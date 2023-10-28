@@ -7,6 +7,8 @@
   <script src="<?= base_url() ?>assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="<?= base_url() ?>assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="<?= base_url() ?>assets/vendor/php-email-form/validate.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
 
   <!-- Template Main JS File -->
   <script src="<?= base_url() ?>assets/js/main.js"></script>

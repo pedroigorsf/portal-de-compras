@@ -2,7 +2,7 @@
   <header id="header" class="d-flex align-items-center shadow-sm p-3 mb-5 bg-white rounded">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="<?= base_url() ?>"><span><i class="bx bx-cart"></i></span> Portal de Compras</a></h1>
+      <h1 class="logo"><a href="<?= base_url() ?>"><span><i class="bx bx-cart"></i> Portal de Compras</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
@@ -20,8 +20,9 @@
           
           <li class="dropdown"><a href="#"><span>Requisições</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="<?= base_url() ?>">Cadastrar nova requisição</a></li>
-              <li><a href="<?= base_url() ?>">Consultar requisição</a></li>
+              <li><a href="<?= base_url() ?>cotacoes/novo">Requisitar nova cotação</a></li>
+              <li><a href="<?= base_url() ?>cotacoes">Consultar requisição</a></li>
+              <li><a href="<?= base_url() ?>cotacoes">Gerenciar cotação</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>Fornecedores</span> <i class="bi bi-chevron-down"></i></a>

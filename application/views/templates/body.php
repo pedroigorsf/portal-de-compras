@@ -2,7 +2,7 @@
       <div class="container" data-aos="fade-up">
       </div>
 </section>
- <!-- ======= Counts Section ======= -->
+
  <section id="counts" class="counts">
       <div class="container">
 
@@ -41,10 +41,9 @@
           </div>
         </div>
       </div>
-    </section><!-- End Counts Section -->
- 
-    <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq section-bg">
+    </section>
+
+    <!-- <section id="faq" class="faq section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -116,7 +115,7 @@
         </div>
 
       </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section> -->
 
   </main><!-- End #main -->
 

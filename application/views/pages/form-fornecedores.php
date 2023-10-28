@@ -2,87 +2,72 @@
     <div class="container" data-aos="fade-up">
 
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border">Cadastro de uma nova empresa</legend>
+            <legend class="scheduler-border py-2">Cadastrar uma nova empresa</legend>
 
-            <div class="row">
-                <div class="col-sm-7">
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="text" id="form8Example1" class="form-control" placeholder="Ex: SUA EMPRESA LTDA" />
-                        <label class="form-label" for="form8Example1">Razão Social</label>
+            <form action="<?= base_url() ?>fornecedores/cadastro" method="post">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <!-- Name input -->
+                        <div class="form-outline">
+                            <label class="form-label" for="form8Example1">Razão Social</label>
+                            <input type="text" name="nome" id="form8Example1" class="form-control" />
+                            <div class="form-text">Informar a Razão Social da empresa</div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm">
-                    <!-- Email input -->
-                    <div class="form-outline">
-                        <input type="email" id="form8Example2" class="form-control"
-                            placeholder="Ex: 00.000.000/0000-00" />
-                        <label class="form-label" for="form8Example2">CNPJ</label>
+                    <div class="col-sm">
+                        <!-- Email input -->
+                        <div class="form-outline">
+                            <label class="form-label" for="form8Example2">CNPJ</label>
+                            <input type="text" name="cnpj" id="cnpj" class="form-control" maxlength="14" size="18"
+                                data-mask="00.000.000/0000-00" onblur="pesquisacnpj(this.value);" />
+                            <div class="form-text">Informar o CNPJ completo</div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                    <div class="col">
+                        <!-- Email input -->
+                        <div class="form-outline">
+                            <label class="form-label" for="form8Example5">CEP</label>
+                            <input type="text" name="cep" id="cep" class="form-control" size="10" maxlength="9" data-mask="00.000/000"
+                                onblur="pesquisacep(this.value);" />
+                            <div class="form-text">Informar apenas números</div>
 
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-2">
 
+                    <div class="col">
+                        <!-- Name input -->
+                        <div class="form-outline">
+                            <label class="form-label" for="form8Example3">Rua</label>
+                            <input type="text" name="endereco" id="rua" class="form-control" placeholder="" />
 
-            <div class="row">
-                <div class="col">
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="text" id="form8Example3" class="form-control"
-                            placeholder="Ex: Av. Mendel Steinbruch" />
-                        <label class="form-label" for="form8Example3">Logradouro</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Name input -->
+                        <div class="form-outline">
+                            <label class="form-label" for="form8Example4">Bairro</label>
+                            <input type="text" name="bairro" id="bairro" class="form-control" placeholder="" />
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Name input -->
+                        <div class="form-outline">
+                            <label class="form-label" for="form8Example4">Cidade</label>
+                            <input type="text" name="cidade" id="cidade" class="form-control" placeholder="" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Name input -->
+                        <div class="form-outline">
+                            <label class="form-label" for="form8Example4">UF</label>
+                            <input type="text" name="estado" id="uf" class="form-control" />
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <input type="text" id="form8Example4" class="form-control" placeholder="Ex: Pajuçara" />
-                        <label class="form-label" for="form8Example4">Bairro</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <!-- Name input -->
-                    <div class="form-outline">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Escolher</option>
-                            <option value="1">AC</option>
-                            <option value="2">AL</option>
-                            <option value="3">AP</option>
-                            <option value="3">BA</option>
-                            <option value="3">CE</option>
-                            <option value="3">DF</option>
-                            <option value="3">ES</option>
-                            <option value="3">GO</option>
-                            <option value="3">MA</option>
-                            <option value="3">MT</option>
-                            <option value="3">MS</option>
-                            <option value="3">MG</option>
-                            <option value="3">PA</option>
-                            <option value="3">PB</option>
-                            <option value="3">PR</option>
-                            <option value="3">PE</option>
-                            <option value="3">PI</option>
-                            <option value="3">RJ</option>
-                            <option value="3">RN</option>
-                            <option value="3">RS</option>
-                            <option value="3">RO</option>
-                            <option value="3">RR</option>
-                            <option value="3">SC</option>
-                            <option value="3">SP</option>
-                            <option value="3">SE</option>
-                            <option value="3">TO</option>
-                        </select>
-                        <label class="form-label" for="form8Example4">Estado</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <!-- Email input -->
-                    <div class="form-outline">
-                        <input type="email" id="form8Example5" class="form-control" placeholder="Ex: 65.405-250" />
-                        <label class="form-label" for="form8Example5">CEP</label>
-                    </div>
-                </div>
-            </div>
+
         </fieldset>
 
         <br>
@@ -94,28 +79,31 @@
                 <div class="col-sm-7">
                     <!-- Name input -->
                     <div class="form-outline">
-                        <input type="text" id="form8Example1" class="form-control"
-                            placeholder="Ex: vendedor@empresa.com.br" />
-                        <label class="form-label" for="form8Example1">E-mail Corporativo</label>
+                        <label class="form-label" for="form8Example1">E-mail</label>
+                        <input type="email" name="email" id="form8Example1" class="form-control" placeholder="" />
+                        <div class="form-text">Informar o e-mail corporativo</div>
+
                     </div>
                 </div>
                 <div class="col-sm">
                     <!-- Email input -->
                     <div class="form-outline">
-                        <input type="email" id="form8Example2" class="form-control"
-                            placeholder="Digite uma senha forte." />
                         <label class="form-label" for="form8Example2">Senha</label>
+                        <input type="password" name="senha" id="form8Example2" class="form-control" placeholder="" />
+                        <div class="form-text">Informar o e-mail corporativo</div>
                     </div>
                 </div>
-            </div></fieldset>
+            </div>
+        </fieldset>
 
-            <div class="col">
+        <div class="col py-5">
             <button type="submit" class="btn btn-primary">Enviar</button>
-            <button type="submit" class="btn btn-danger">Cancelar</button>
-    </div>
+            <button type="reset" class="btn btn-danger">Limpar</button>
+        </div>
+        </form>
 
     </div>
-    
+
 
 
 

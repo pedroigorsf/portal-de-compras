@@ -5,10 +5,10 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Categoria</th>
-      <th scope="col">Ações</th>
+      <th scope="col" class="col-sm">#</th>
+      <th scope="col" class="col-sm-6">Nome</th>
+      <th scope="col" class="col-sm">Categoria</th>
+      <th scope="col" class="col-sm">Ações</th>
     </tr>
   </thead>
   <tbody>
