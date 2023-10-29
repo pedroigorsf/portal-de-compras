@@ -9,4 +9,8 @@ class Produtos_model extends CI_Model {
     public function cadastro($novo){
         $this->db->insert("tb_produtos", $novo);
     }
+
+    public function show($id){
+        return $this->db->get_where("tb_produtos", array("id" => $id))->row_array();
+    }
 }

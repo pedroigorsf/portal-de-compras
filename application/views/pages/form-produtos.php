@@ -12,7 +12,8 @@
                     <!-- Name input -->
                     <div class="form-outline">
                         <label class="form-label" for="form8Example1">Nome</label>
-                        <input type="text" name="nome" id="form8Example1" class="form-control" placeholder="Exemplo: Luva Isolante Alta Tensão Classe 0 = 1.000 V" />
+                        <input type="text" name="nome" id="form8Example1" class="form-control"
+                        value="<?= isset($produto) ? $produto["nome"] : ""; ?>"/>
                         <div class="form-text">Qual o nome do produto que deseja cadastrar?</div>
                         
                     </div>
@@ -22,7 +23,7 @@
                     <!-- Name input -->
                     <div class="form-outline">
                     <label class="form-label" for="form8Example4">Categoria</label>
-                        <select class="form-select" name="categoria" aria-label="Default select example" required>
+                        <select class="form-select" name="categoria" aria-label="Default select example"  required>
                             <option selected>Escolher</option>
                             <option value="Ferramentas Especializadas">Ferramentas Especializadas</option>
                             <option value="Conexão e Fixação">Conexão e Fixação</option>
@@ -42,8 +43,8 @@
                     <!-- Name input -->
                     <div class="form-outline">
                     <label class="form-label" for="form8Example3">Marca</label>
-                        <input type="text" name="marca" id="form8Example3" class="form-control"
-                            placeholder="Exemplo: ELSA" />
+                        <input type="text" name="marca" id="form8Example3" class="form-control" 
+                        value="<?= isset($produto) ? $produto["marca"] : ""; ?>"/>
                             <div class="form-text">Qual a marca?</div>
                         
                     </div>

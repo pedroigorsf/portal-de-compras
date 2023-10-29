@@ -31,4 +31,16 @@ class Produtos extends CI_Controller {
 		$this->Produtos_model->cadastro($novo);
 		redirect("produtos");
 	}
+
+	public function edit($id){
+		$this->load->model("Produtos_model");
+		$data["produto"] = $this->Produtos_model->show($id);
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('pages/form-produtos', $data);
+		$this->load->view('templates/js');
+		$this->load->view('templates/footer');
+
+	}
 }

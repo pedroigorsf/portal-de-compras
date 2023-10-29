@@ -34,4 +34,15 @@ class Cotacoes extends CI_Controller {
 		$this->Cotacoes_model->cadastro($novo);
 		redirect("cotacoes");
 	}
+
+	public function edit($id){
+		$this->load->model("Cotacoes_model");
+        $data["cotacao"] = $this->Cotacoes_model->show($id);
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('pages/form-cotacao', $data);
+		$this->load->view('templates/js');
+		$this->load->view('templates/footer');
+	}
 }

@@ -21,8 +21,7 @@
           <li class="dropdown"><a href="#"><span>Requisições</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="<?= base_url() ?>cotacoes/novo">Requisitar nova cotação</a></li>
-              <li><a href="<?= base_url() ?>cotacoes">Consultar requisição</a></li>
-              <li><a href="<?= base_url() ?>cotacoes">Gerenciar cotação</a></li>
+              <li><a href="<?= base_url() ?>cotacoes">Gerenciar requisição</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>Fornecedores</span> <i class="bi bi-chevron-down"></i></a>

@@ -32,7 +32,19 @@ class Fornecedores extends CI_Controller {
 		$novo = $_POST;
 		$this->load->model("Fornecedores_model");
 		$this->Fornecedores_model->cadastro($novo);
-		redirect("fornecedores");
+		redirect("fornecedores");	
+	}
 
+	public function edit($id){
+		$this->load->model("Fornecedores_model");
+		$data["fornecedor"] = $this->Fornecedores_model->show($id);
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('pages/form-fornecedores', $data);
+		$this->load->view('templates/js');
+		$this->load->view('templates/cnpj');
+		$this->load->view('templates/cep');
+		$this->load->view('templates/footer');
 	}
 }

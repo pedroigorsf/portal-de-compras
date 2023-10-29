@@ -9,4 +9,8 @@ class Fornecedores_model extends CI_Model {
     public function cadastro($novo){
         $this->db->insert("tb_fornecedores", $novo);
     }
+
+    public function show($id){
+        return $this->db->get_where("tb_fornecedores", array("id" => $id))->row_array();
+    }
 }
