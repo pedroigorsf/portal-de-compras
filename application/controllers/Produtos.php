@@ -16,10 +16,13 @@ class Produtos extends CI_Controller {
 	}
 
     public function novo()
-	{
+	{	
+		$this->load->model("Produtos_model");
+		$data["produtos"] = $this->Produtos_model->listar_produtos();
+		
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
-		$this->load->view('pages/form-produtos');
+		$this->load->view('pages/form-produtos', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
 	}
@@ -35,12 +38,20 @@ class Produtos extends CI_Controller {
 	public function edit($id){
 		$this->load->model("Produtos_model");
 		$data["produto"] = $this->Produtos_model->show($id);
+		$data["categorias"] = $this->Produtos_model->listar_categorias();
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-produtos', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
-
 	}
+
+	public function update($id){
+		$this->load->model("Produtos_model");
+		$produto = $_POST;
+		$this->Produtos_model->update($id, $produto);
+		redirect("produtos");
+	}
+	
 }

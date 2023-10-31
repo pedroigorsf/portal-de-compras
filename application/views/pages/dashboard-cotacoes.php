@@ -40,14 +40,10 @@
 
             <td>
               <div class="col">
-                <button type="button" class="btn btn-primary col text-white">
-                <i class="bi bi-cart-plus"></i>
-                </button>
-                <button type="button" class="btn btn-danger col">
-                  <i class="bi bi-trash"></i>
-                </button>
+                <a class="btn btn-primary" href="<?= base_url() ?>cotacoes/painel/<?= $cotacao['id'] ?>">
+                  <i class="bi bi-plus"></i> Acessar
+                </a>
               </div>
-
             </td>
           </tr>
         <?php endforeach; ?>

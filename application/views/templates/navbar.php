@@ -30,12 +30,7 @@
               <li><a href="<?= base_url() ?>fornecedores">Consultar fornecedor</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Relatórios</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Relatórios do mês</a></li>
-              <li><a href="#">Relatórios por período</a></li>
-            </ul>
-          </li>
+          
           <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>

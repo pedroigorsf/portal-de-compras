@@ -17,7 +17,15 @@
         <td><?= $fornecedor['id']; ?></td>
         <td><?= $fornecedor['nome']; ?></td>
         <td><?= $fornecedor['cnpj']; ?></td>
-        <td> x </td>
+        <td> <div class="col">
+              <a class="btn btn-primary" href="<?= base_url() ?>/fornecedores/edit/<?=$fornecedor['id']?>">
+                <i class="bi bi-pencil"></i>
+              </a>
+                  
+                <button type="button" class="btn btn-danger col">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div> </td>
     </tr>
     <?php endforeach; ?>
   </tbody>
