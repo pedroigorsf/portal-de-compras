@@ -9,21 +9,20 @@
 
 
             <?php if (isset($cotacao)): ?>
-                <form action="<?= base_url() ?>cotacoes/update/<?= $cotacao['id'] ?>" method="post">
+                <form action="<?= base_url() ?>cotacoes/update/<?= $cotacoes['id'] ?>" method="post">
                 <?php else: ?>
-                    <form action="<?= base_url() ?>cotacoes/cadastro" method="post">
+                    <form action="<?= base_url() ?>cotacoes/cadastro_cotacao_fornecedor/<?= $cotacoes['id'] ?>" method="post">
                     <?php endif; ?>
 
 
 
                     <div class="row d-flex justify-content-center">
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <!-- Email input -->
-                            
-                            <table class="table justify-content-center">
-                                <thead class="table-primary">
+
+                            <table class="table justify-content-center border border-secondary text-center">
+                                <thead class="table-primary ">
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Nome</th>
                                         <th scope="col">CNPJ</th>
                                         <th scope="col">Ações</th>
@@ -31,11 +30,28 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <?php foreach($cotacoes as $cotacao) ?>
-                                        <td><?=$cotacoes["id"]?></td>
-                                        <td><?=$cotacoes["fk_fornecedor"]?></td>
-                                        <td>x</td>
-                                        <td>x</td>
+                                        <?php foreach ($fornecedores_cotacao as $f_cotacao): ?>
+                                            <td>
+                                                <?= $f_cotacao["nome"] ?>
+                                            </td>
+                                            <td>
+                                                <?= $f_cotacao["cnpj"] ?>
+                                            </td>
+                                            <td>
+                                                <div class="col">
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="<?= base_url() ?>fornecedores/edit/<?= $f_cotacao['id'] ?>">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </a>
+
+                                                    <a class="btn btn-danger btn-sm"
+                                                        href="javascript:goDelete(<?= $f_cotacao['id'] ?>)">
+                                                        <i class="bi bi-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+
+                                        <?php endforeach; ?>
                                     </tr>
                                 </tbody>
                             </table>
@@ -43,7 +59,7 @@
                             <div class="form-outline text-center">
                                 <label class="form-label" for="form8Example2">Fornecedor</label>
 
-                                <select class="form-select" required>
+                                <select class="form-select" name="fk_fornecedor" required>
                                     <option selected disabled value="" hidden>Escolha uma opção</option>
                                     <?php foreach ($fornecedores as $fornecedor): ?>
                                         <option value="<?= $fornecedor["id"] ?>">
@@ -54,11 +70,13 @@
                                 <div class="form-text">Escolha um fornecedor por vez e adicione.</div><br>
 
 
-                                <a href="<?= base_url() ?>cotacao_fornecedor/<?=$cotacoes['id']?>" type="submit" class="btn btn-success"><i
-                                        class="bi bi-plus"></i>
-                                    Adicionar</a>
-                                <a href="<?= base_url() ?>cotacoes/" type="reset" class="btn btn-secondary"><i
-                                        class="bi bi-arrow-left"></i>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-plus"></i>
+                                    Adicionar
+                                </button>
+
+                                <a href="<?= base_url() ?>cotacoes/painel/<?= $cotacoes['id'] ?>" type="reset"
+                                    class="btn btn-secondary"><i class="bi bi-arrow-left"></i>
                                     Voltar</a>
                             </div>
                         </div>

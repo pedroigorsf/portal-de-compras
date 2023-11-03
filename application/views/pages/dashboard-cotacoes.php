@@ -2,53 +2,58 @@
   <div class="container" data-aos="fade-up">
 
 
-    <table class="table">
-      <thead class="thead-dark">
+    <table class="table border border-info">
+      <thead class="thead-dark table-primary">
         <tr>
-          <th scope="col" class="col-sm">#</th>
-          <th scope="col" class="col-sm-4">Solicitação</th>
-          <th scope="col" class="col-sm-2">Solicitante</th>
-          <th scope="col" class="col-sm-2">Data inicial</th>
-          <th scope="col" class="col-sm-2">Data final</th>
-          <th scope="col" class="col-sm-2">Cotação</th>
+          <th scope="col" class="col-sm">Cotação</th>
+          <th scope="col" class="col-sm-5">Solicitação</th>
+          <th scope="col" class="col-sm">Data inicial</th>
+          <th scope="col" class="col-sm">Data final</th>
+          <th scope="col" class="col-sm">Status</th>
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($cotacoes as $cotacao): ?>
-          <tr>
-            <td>
-              <?= $cotacao['id']; ?>
-            </td>
-            <td>
-              <?= $cotacao['solicitacao']; ?>
-            </td>
-            <td>
-              <?= $cotacao['fk_solicitante']; ?>
-            </td>
-            <td>
-              <?php
-              $data_formatada = date('d/m/Y', strtotime($cotacao['data_inicial']));
-              echo $data_formatada;
-              ?>
-            </td>
-            <td>
-              <?php
-              $data_formatada = date('d/m/Y', strtotime($cotacao['data_final']));
-              echo $data_formatada;
-              ?>
-            </td>
+        <?php if ($cotacoes): ?>
+          <?php foreach ($cotacoes as $cotacao): ?>
+            <tr>
+              <td>
 
-            <td>
-              <div class="col">
-                <a class="btn btn-primary" href="<?= base_url() ?>cotacoes/painel/<?= $cotacao['id'] ?>">
-                  <i class="bi bi-plus"></i> Acessar
+                <a class="btn btn-primary btn-sm" href="<?= base_url() ?>cotacoes/painel/<?= $cotacao['id'] ?>">
+                  Cotação n°
+                  <?= $cotacao['id']; ?>
                 </a>
-              </div>
-            </td>
+              </td>
+              <td>
+                <?= $cotacao['solicitacao']; ?>
+              </td>
+              <td>
+                <?php
+                $data_formatada = date('d/m/Y', strtotime($cotacao['data_inicial']));
+                echo $data_formatada;
+                ?>
+              </td>
+              <td>
+                <?php
+                $data_formatada = date('d/m/Y', strtotime($cotacao['data_final']));
+                echo $data_formatada;
+                ?>
+              </td>
+
+              <td>
+                <button class="btn btn-success btn-sm active">Aprovado</button>
+              </td>
+
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <tr>
+            <td colspan="5" class="text-center">Nenhum pedido de compra cadastrado</td>
           </tr>
-        <?php endforeach; ?>
+        <?php endif; ?>
       </tbody>
     </table>
+
+    <a href="<?= base_url() ?>cotacoes/novo" class="btn btn-outline-primary">Adicionar um novo pedido</a>
 
 
   </div>

@@ -2,86 +2,83 @@
     <div class="container" data-aos="fade-up">
 
         <fieldset class="scheduler-border">
-            <legend class="scheduler-border py-4">Requisitar uma nova cotação</legend>
-
-
+            <legend class="scheduler-border py-4 text-center">Adicionar itens na cotação <b>n°
+                    <?= $cotacoes["id"] ?>
+                </b></legend>
 
             <?php if (isset($cotacao)): ?>
-                <form action="<?= base_url() ?>cotacoes/update/<?= $cotacao['id'] ?>" method="post">
+                <form action="<?= base_url() ?>cotacoes/update/<?= $cotacoes['id'] ?>" method="post">
                 <?php else: ?>
-                    <form action="<?= base_url() ?>cotacoes/cadastro" method="post">
+                    <form action="<?= base_url() ?>cotacoes/cadastro_cotacao_produto/<?= $cotacoes['id'] ?>" method="post">
                     <?php endif; ?>
 
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-6">
+
+                            <table class="table justify-content-center">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th scope="col" class="col-sm-9">Nome</th>
+                                        <th scope="col" class="col-sm-3 text-center">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if ($produtos_cotacao): ?>
+                                        <?php foreach ($produtos_cotacao as $p_cotacao): ?>
+
+                                            <tr>
+
+                                                <td>
+                                                    <?= $p_cotacao["nome"] ?>
+                                                </td>
+                                                <td>
+                                                    <div class="col-sm text-center">
+                                                        <a class="btn btn-primary btn-sm"
+                                                            href="<?= base_url() ?>fornecedores/edit/<?= $p_cotacao['id'] ?>">
+                                                            <i class="bi bi-pencil"></i>
+                                                        </a>
+
+                                                        <a class="btn btn-danger btn-sm"
+                                                            href="javascript:goDelete(<?= $p_cotacao['id'] ?>)">
+                                                            <i class="bi bi-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr>
+                                            <td colspan="2" class="text-center">Nenhum produto cadastrado</td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </tbody>
+                            </table>
+
+                            <div class="form-outline text-center">
+                                <label class="form-label" for="form8Example2">Produtos</label>
+
+                                <select class="form-select" name="fk-produtos" required>
+                                    <option selected disabled hidden>Escolha uma opção</option>
+                                    <?php foreach ($produtos as $produto): ?>
+                                        <option value="<?= $produto["id"] ?>">
+                                            <?= $produto["nome"] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <div class="form-text">Escolha um produto por vez e adicione.</div><br>
 
 
-                    <div class="row">
-                    <div class="col-sm">
-                            <!-- Email input -->
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example2">Solicitante</label>
-                                <input type="text" name="fk_solicitante" id="fk_solicitante" class="form-control"
-                                value="<?= isset($cotacao) ? $cotacao["fk_solicitante"] : ""; ?>" disabled/>
-                                <div class="form-text">Responsável pela requisição de compra.</div>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-plus"></i>
+                                    Adicionar
+                                </button>
+
+                                <a href="<?= base_url() ?>cotacoes/painel/<?= $cotacoes['id'] ?>" type="reset"
+                                    class="btn btn-secondary"><i class="bi bi-arrow-left"></i>
+                                    Voltar</a>
                             </div>
                         </div>
-                        <div class="col-sm-8">
-                            <!-- Email input -->
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example2">Solicitação</label>
-                                <input type="text" name="solicitacao" id="solicitacao" class="form-control"
-                                    value="<?= isset($cotacao) ? $cotacao["solicitacao"] : ""; ?>" />
-                                <div class="form-text">Motivo da solicitação referente a cotação.</div>
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="row py-4">
-
-                        <div class="col-sm-3">
-                            <!-- Name input -->
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example3">Data inicial</label>
-                                <input type="date" name="data_inicial" id="data_inicial" class="form-control"
-                                    value="<?= isset($cotacao) ? $cotacao['data_inicial'] : ""; ?>" placeholder="" />
-                                <div class="form-text">Período inicial da cotação.</div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <!-- Name input -->
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example4">Data final</label>
-                                <input type="date" name="data_final" id="data_final" class="form-control"
-                                    value="<?= isset($cotacao) ? $cotacao['data_final'] : ""; ?>" placeholder="" />
-                                <div class="form-text">Período final da cotação.</div>
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <!-- Name input -->
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example4">Aprovador</label>
-                                <input type="text" name="fk_aprovador" id="fk_aprovador" class="form-control"
-                                    value="<?= isset($cotacao) ? $cotacao['fk_aprovador'] : ""; ?>" placeholder="" disabled/>
-                                <div class="form-text">Responsável pela aprovação</div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-        </fieldset>
-
-        <div class="col py-5">
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <button type="reset" class="btn btn-danger">Limpar</button>
-        </div>
-        </form>
-
-    </div>
-
-
-
-
+                </form>
     </div>
 </section>

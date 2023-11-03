@@ -4,7 +4,13 @@
         <fieldset class="scheduler-border">
             <legend class="scheduler-border py-2">Cadastrar uma nova empresa</legend>
 
-            <form action="<?= base_url() ?>fornecedores/cadastro" method="post">
+            
+            <?php if (isset($fornecedor)): ?>
+                <form action="<?= base_url() ?>fornecedores/update/<?= $fornecedor['id'] ?>" method="post">
+                <?php else: ?>
+                    <form action="<?= base_url() ?>fornecedores/cadastro" method="post">
+                    <?php endif; ?>
+
                 <div class="row">
                     <div class="col-sm-7">
                         <!-- Name input -->
@@ -79,13 +85,12 @@
 
         <br>
 
-        
+        <!--
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">Informações de acesso</legend>
 
             <div class="row">
                 <div class="col-sm-7">
-                    <!-- Name input -->
                     <div class="form-outline">
                         <label class="form-label" for="form8Example1">E-mail</label>
                         <input type="email" name="email" id="form8Example1" class="form-control" placeholder="" />
@@ -94,7 +99,6 @@
                     </div>
                 </div>
                 <div class="col-sm">
-                    <!-- Email input -->
                     <div class="form-outline">
                         <label class="form-label" for="form8Example2">Senha</label>
                         <input type="password" name="senha" id="form8Example2" class="form-control" placeholder="" />
@@ -103,10 +107,11 @@
                 </div>
             </div>
         </fieldset>
+                -->
 
         <div class="col py-5">
-            <button type="submit" class="btn btn-primary">Enviar</button>
-            <button type="reset" class="btn btn-danger">Limpar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="<?=base_url()?>fornecedores" class="btn btn-danger">Cancelar</a>
         </div>
         </form>
 

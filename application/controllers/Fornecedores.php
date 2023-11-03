@@ -47,4 +47,18 @@ class Fornecedores extends CI_Controller {
 		$this->load->view('templates/cep');
 		$this->load->view('templates/footer');
 	}
+
+	public function update($id){
+		$this->load->model("Fornecedores_model");
+		$fornecedor = $_POST;
+		$this->Fornecedores_model->update($id, $fornecedor);
+		redirect("fornecedores");
+	}
+
+	public function delete($id){
+		$this->load->model("Fornecedores_model");
+		$this->Fornecedores_model->destroy($id);
+		redirect("fornecedores");
+
+	}
 }

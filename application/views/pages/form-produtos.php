@@ -58,7 +58,7 @@
 
 
         <div class="col py-5">
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
             <a href="<?=base_url()?>produtos" class="btn btn-danger">Cancelar</a>
         </div>
 

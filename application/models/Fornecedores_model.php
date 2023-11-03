@@ -25,5 +25,26 @@ class Fornecedores_model extends CI_Model
         WHERE fornecedor.id = $id");
     }
 
+    public function update($id, $fornecedor)
+    {
+        $this->db->where("id", $id);
+        return $this->db->update("tb_fornecedores", $fornecedor);
+    }
+
+    public function destroy($id)
+    {
+        $this->db->where("id", $id);
+        return $this->db->delete("tb_fornecedores");
+    }
+
+    public function listar_fornecedor_cotacao($id)
+    {
+        return $this->db->query("
+            SELECT fornecedores_cotacao.*, tb_fornecedores.*
+            FROM fornecedores_cotacao
+            JOIN tb_fornecedores ON fornecedores_cotacao.fk_fornecedor = tb_fornecedores.id
+            WHERE fornecedores_cotacao.fk_cotacao_fornecedor = $id;
+        ")->result_array();
+    }
 
 }

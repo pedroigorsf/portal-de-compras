@@ -24,5 +24,22 @@ class Produtos_model extends CI_Model {
         return $this->db->update("tb_produtos", $produto);
     }
 
+    public function destroy($id){
+        $this->db->where("id", $id);
+        return $this->db->delete("tb_produtos");
+    }
+
+    public function listar_produtos_cotacao($id)
+    {
+        return $this->db->query("
+            SELECT produtos_cotacao.*, tb_produtos.*
+            FROM produtos_cotacao
+            JOIN tb_produtos ON produtos_cotacao.fk_produtos = tb_produtos.id
+            WHERE produtos_cotacao.fk_cotacao = $id;
+        ")->result_array();
+    }
+
+
+
 
 }

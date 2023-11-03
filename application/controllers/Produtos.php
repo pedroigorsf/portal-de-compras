@@ -38,7 +38,6 @@ class Produtos extends CI_Controller {
 	public function edit($id){
 		$this->load->model("Produtos_model");
 		$data["produto"] = $this->Produtos_model->show($id);
-		$data["categorias"] = $this->Produtos_model->listar_categorias();
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
@@ -51,6 +50,12 @@ class Produtos extends CI_Controller {
 		$this->load->model("Produtos_model");
 		$produto = $_POST;
 		$this->Produtos_model->update($id, $produto);
+		redirect("produtos");
+	}
+
+	public function delete($id){
+		$this->load->model("Produtos_model");
+		$this->Produtos_model->destroy($id);
 		redirect("produtos");
 	}
 	

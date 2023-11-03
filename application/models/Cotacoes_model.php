@@ -14,12 +14,12 @@ class Cotacoes_model extends CI_Model {
 
     public function aprovadores()
     {
-        return $this->db->query("SELECT nome FROM tb_usuarios WHERE tipo = 'aprovador' ")->result_array();
+        return $this->db->query("SELECT nome FROM tb_usuarios WHERE tipo = 'aprovador' ")->row_array();
     }
 
     public function solicitantes()
     {
-        return $this->db->query("SELECT nome FROM tb_usuarios WHERE tipo = 'solicitante' ")->result_array();
+        return $this->db->query("SELECT nome FROM tb_usuarios WHERE tipo = 'solicitante' ")->row_array();
     }
 
     public function cadastro($novo){
@@ -39,8 +39,25 @@ class Cotacoes_model extends CI_Model {
         return $this->db->get_where("tb_cotacoes", array("id" => $id))->row_array();
     }
 
-    public function cotacao_fornecedor($id, $produto){
+    public function cotacao_produto($id, $produto){
         $this->db->where("id", $id);
         return $this->db->update("tb_produtos", $produto);
+    }
+
+    public function cadastro_cotacao_produto($data){
+
+        $prod = $data['fk_produtos'];
+        
+        $sql = "INSERT INTO produtos_cotacao (`fk_cotacao`, `fk_produtos`) VALUES ({$data['id']}, {$prod});";
+        
+        $this->db->query($sql);
+        
+    }
+    
+    public function cadastro_cotacao_fornecedor($id, $novo){
+
+        $this->db->query("INSERT INTO fornecedores_cotacao (fk_cotacao_fornecedor, fk_fornecedor)
+            VALUES ($id , $novo)
+            ");
     }
 }
