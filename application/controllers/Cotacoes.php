@@ -69,8 +69,12 @@ class Cotacoes extends CI_Controller
 	{
 		$this->load->model("Cotacoes_model");
 		$data["cotacoes"] = $this->Cotacoes_model->painel($id);
-		$data["produtos_fornecedores"] = $this->Cotacoes_model->listar_produtos_fornecedores($id);
+		$this->load->model("Fornecedores_model");
+		$data["fornecedores_cotacao"] = $this->Fornecedores_model->listar_fornecedor_cotacao($id);
+		$this->load->model("Produtos_model");
+		$data["produtos_cotacao"] = $this->Produtos_model->listar_produtos_cotacao($id);
 
+		// echo "<pre>";
 		// print_r($data["produtos_fornecedores"]);
 		// exit;
 

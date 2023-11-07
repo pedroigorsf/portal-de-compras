@@ -23,22 +23,24 @@
         <?= $cotacoes["id"]; ?>
       </h4>
 
-      <b>Solicitação:</b> <?= $cotacoes["solicitacao"]; ?><br>
-      <b>Período:</b> 
-                <?php
-                $data_formatada = date('d/m/Y', strtotime($cotacoes['data_inicial']));
-                echo $data_formatada;
-                ?> à 
-                <?php
-                $data_formatada = date('d/m/Y', strtotime($cotacoes['data_final']));
-                echo $data_formatada;
-                ?>
+      <b>Solicitação:</b>
+      <?= $cotacoes["solicitacao"]; ?><br>
+      <b>Período:</b>
+      <?php
+      $data_formatada = date('d/m/Y', strtotime($cotacoes['data_inicial']));
+      echo $data_formatada;
+      ?> à
+      <?php
+      $data_formatada = date('d/m/Y', strtotime($cotacoes['data_final']));
+      echo $data_formatada;
+      ?>
 
 
       <div class="row py-4">
 
         <div class="col">
-          <a href="<?= base_url() ?>cotacoes/adicionar_fornecedores/<?= $cotacoes["id"] ?>" class="btn btn-primary btn-sm">
+          <a href="<?= base_url() ?>cotacoes/adicionar_fornecedores/<?= $cotacoes["id"] ?>"
+            class="btn btn-primary btn-sm">
             <i class="bi bi-gear"></i>
             Fornecedores</a>
 
@@ -61,79 +63,53 @@
             <h4>Respostas:</h4>
 
 
-            
+            <?php foreach ($produtos_cotacao as $p): ?>
+
+              <table class="table text-left border border-info table-hover">
+                <thead class="table-info text-bg-info">
+                  <tr>
+                    <th class="col-sm bg-primary text-white" scope="col" colspan="6">Produto:
+                      <?= $p['nome']; ?>
+                  </tr>
+                  <tr>
+                    <th class="col-sm-0 bg-info bg-gradient text-white">#</th>
+                    <th class="col-sm-6 bg-info bg-gradient text-white" scope="col">Fornecedor</th>
+                    <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Status</th>
+                    <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Quant.</th>
+                    <th class="col-sm-2 bg-info bg-gradient text-white" scope="col">Preço</th>
+                    <th class="col-sm-2 bg-info bg-gradient text-white" scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($fornecedores_cotacao as $f): ?>
+                    <tr>
+                      <td class="text-center bg-muted">
+                        <div class="form-check text-center">
+                          <input class="form-check-input text-center bg-gradient" type="radio" name="flexRadioDefault"
+                            id="flexRadioDefault1">
+                        </div>
+                      </td>
+                      <td>
+                        <?= $f['nome']; ?>
+                      </td>
+                      <td><i class="bi bi-circle-fill text-secondary"></i></td>
+                      <td>10</td>
+                      <td>R$ 1,99</td>
+                      <td>R$ 19,99</td>
 
 
-            <table class="table table-bordered border-primary">
-              <thead class="table-primary">
-                <tr>
-                  <th class="col-sm" scope="col" colspan="2">Produto:
-                  
-                  </th>
-                </tr>
-              </thead>
-            </table>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+              <hr class="py-2">
+            <?php endforeach; ?>
 
 
-            <table class="table text-center table-bordered border-dark">
-              <thead class="table-primary">
-                <tr>
-                  <th class="col-sm-0 table-dark">#</th>
-                  <th class="col-sm-6 table-dark" scope="col">Fornecedores</th>
-                  <th class="col-sm-1 table-dark" scope="col">Status</th>
-                  <th class="col-sm-1 table-dark" scope="col">Quantidade</th>
-                  <th class="col-sm-2 table-dark" scope="col">Preços</th>
-                  <th class="col-sm-2 table-dark" scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
 
-                  <td class="table-primary table-dark">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    </div>
-                  </td>
-                  <td>EMPRESA LTDA</td>
-                  <td>x</td>
-                  <td>10</td>
-                  <td>R$ 1,99</td>
-                  <td>R$ 19,99</td>
 
-                </tr>
 
-                <tr>
 
-                  <td class="table-primary table-dark">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    </div>
-                  </td>
-                  <td>EMPRESA LTDA</td>
-                  <td>x</td>
-                  <td>10</td>
-                  <td>R$ 1,99</td>
-                  <td>R$ 19,99</td>
-
-                </tr>
-
-                <tr>
-
-                  <td class="table-primary table-dark">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    </div>
-                  </td>
-                  <td>EMPRESA LTDA</td>
-                  <td>x</td>
-                  <td>10</td>
-                  <td>R$ 1,99</td>
-                  <td>R$ 19,99</td>
-
-                </tr>
-
-              </tbody>
-            </table>
 
 
 
