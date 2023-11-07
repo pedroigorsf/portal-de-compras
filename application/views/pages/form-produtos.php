@@ -16,8 +16,8 @@
                             <!-- Name input -->
                             <div class="form-outline">
                                 <label class="form-label" for="form8Example1">Nome</label>
-                                <input type="text" name="nome" id="form8Example1" class="form-control"
-                                    value="<?= isset($produto) ? $produto["nome"] : ""; ?>" />
+                                <input type="text" name="nome" id="form8Example1" class="text-uppercase form-control"
+                                    value="<?= isset($produto) ? $produto["nome"] : ""; ?>" oninput="this.value = this.value.toUpperCase()" required/>
                                 <div class="form-text">Qual o nome do produto que deseja cadastrar?</div>
 
                             </div>
@@ -47,8 +47,8 @@
                             <!-- Name input -->
                             <div class="form-outline">
                                 <label class="form-label" for="form8Example3">Marca</label>
-                                <input type="text" name="marca" id="form8Example3" class="form-control"
-                                    value="<?= isset($produto) ? $produto["marca"] : ""; ?>" />
+                                <input type="text" name="marca" id="form8Example3" class="text-uppercase form-control"
+                                    value="<?= isset($produto) ? $produto["marca"] : ""; ?>" required oninput="this.value = this.value.toUpperCase()"/>
                                 <div class="form-text">Qual a marca?</div>
 
                             </div>

@@ -6,8 +6,8 @@
       <thead class="thead-dark table-primary">
         <tr>
           <th scope="col" class="col-sm-1">#</th>
-          <th scope="col" class="col-sm-5">Nome</th>
-          <th scope="col" class="col-sm">Marca</th>
+          <th scope="col" class="col-sm-7">Nome</th>
+          <th scope="col" class="col-sm-3">Marca</th>
           <th scope="col" class="col-sm-1">Ações</th>
         </tr>
       </thead>

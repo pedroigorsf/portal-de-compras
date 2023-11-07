@@ -45,11 +45,8 @@ class Cotacoes_model extends CI_Model {
     }
 
     public function cadastro_cotacao_produto($data){
-
         $prod = $data['fk_produtos'];
-        
         $sql = "INSERT INTO produtos_cotacao (`fk_cotacao`, `fk_produtos`) VALUES ({$data['id']}, {$prod});";
-        
         $this->db->query($sql);
         
     }
@@ -59,5 +56,17 @@ class Cotacoes_model extends CI_Model {
         $this->db->query("INSERT INTO fornecedores_cotacao (fk_cotacao_fornecedor, fk_fornecedor)
             VALUES ($id , $novo)
             ");
+    }
+
+    public function destroy_produto_cotacao($id_cotacao, $id_produto){
+        $this->db->where("fk_produtos", $id_produto);
+        $this->db->where("fk_cotacao", $id_cotacao);
+        $this->db->delete("produtos_cotacao");
+    }
+
+    public function listar_produtos_fornecedores($id){
+        return $this->db->query("SELECT p.*, f.*
+        FROM produtos_cotacao AS p
+        JOIN fornecedores_cotacao AS f ON p.fk_cotacao AND f.fk_cotacao_fornecedor = $id")->result_array();
     }
 }

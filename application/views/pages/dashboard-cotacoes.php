@@ -5,11 +5,9 @@
     <table class="table border border-info">
       <thead class="thead-dark table-primary">
         <tr>
-          <th scope="col" class="col-sm">Cotação</th>
-          <th scope="col" class="col-sm-5">Solicitação</th>
-          <th scope="col" class="col-sm">Data inicial</th>
-          <th scope="col" class="col-sm">Data final</th>
-          <th scope="col" class="col-sm">Status</th>
+          <th scope="col" class="col-sm-2">Cotação</th>
+          <th scope="col" class="col-sm-9">Solicitação</th>
+          <th scope="col" class="col-sm-1">Status</th>
         </tr>
       </thead>
       <tbody>
@@ -26,7 +24,8 @@
               <td>
                 <?= $cotacao['solicitacao']; ?>
               </td>
-              <td>
+
+              <!-- <td>
                 <?php
                 $data_formatada = date('d/m/Y', strtotime($cotacao['data_inicial']));
                 echo $data_formatada;
@@ -37,7 +36,7 @@
                 $data_formatada = date('d/m/Y', strtotime($cotacao['data_final']));
                 echo $data_formatada;
                 ?>
-              </td>
+              </td> -->
 
               <td>
                 <button class="btn btn-success btn-sm active">Aprovado</button>

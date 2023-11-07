@@ -56,14 +56,23 @@ class Cotacoes extends CI_Controller
 		$this->load->model("Cotacoes_model");
 		$cotacao = $_POST;
 		$this->Cotacoes_model->update($id, $cotacao);
-		// redirect("cotacoes");
+		redirect("cotacoes");
+	}
+
+	public function delete($id){
+		$this->load->model("Cotacoes_model");
+		$this->Cotacoes_model->destroy($id);
+		redirect("cotacoes");
 	}
 
 	public function painel($id)
 	{
 		$this->load->model("Cotacoes_model");
 		$data["cotacoes"] = $this->Cotacoes_model->painel($id);
+		$data["produtos_fornecedores"] = $this->Cotacoes_model->listar_produtos_fornecedores($id);
 
+		// print_r($data["produtos_fornecedores"]);
+		// exit;
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
@@ -97,6 +106,14 @@ class Cotacoes extends CI_Controller
 		redirect("painel");
 	}
 
+	public function cadastro_cotacao_fornecedor($id)
+	{
+		$novo = implode($_POST);
+		$this->load->model("Cotacoes_model");
+		$this->Cotacoes_model->cadastro_cotacao_fornecedor($id, $novo);
+		redirect("cotacoes/cadastro_cotacao_fornecedor/$id");
+	}
+
 	public function adicionar_produtos($id)
 	{
 		$this->load->model("Produtos_model");
@@ -116,27 +133,17 @@ class Cotacoes extends CI_Controller
 
 	public function cadastro_cotacao_produto($id)
 	{
-
 		$this->load->model("Cotacoes_model");
-
 		$data['fk_produtos'] = $_POST["fk-produtos"];
 		$data['id'] = $id;
-
-		// print_r('<pre>');
-		// print_r($_POST["fk-produtos"]);
-		// exit;
-
-
 		$this->Cotacoes_model->cadastro_cotacao_produto($data);
 		redirect("cotacoes/adicionar_produtos/$id");
 	}
 
-	public function cadastro_cotacao_fornecedor($id)
-	{
-		$novo = implode($_POST);
+	public function deletar_produto_cotacao($id_cotacao, $id_produto){
 		$this->load->model("Cotacoes_model");
-		$this->Cotacoes_model->cadastro_cotacao_fornecedor($id, $novo);
-		redirect("cotacoes/cadastro_cotacao_fornecedor/$id");
+		$this->Cotacoes_model->destroy_produto_cotacao($id_cotacao, $id_produto);
+		redirect("cotacoes/adicionar_produtos/$id_cotacao");
 	}
 
 

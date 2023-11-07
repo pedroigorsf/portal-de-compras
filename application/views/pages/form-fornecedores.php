@@ -17,7 +17,7 @@
                         <div class="form-outline">
                             <label class="form-label" for="form8Example1">Razão Social</label>
                             <input type="text" name="nome" id="form8Example1" class="form-control" 
-                            value="<?= isset($fornecedor) ? $fornecedor["nome"] : "";?>"/>
+                            value="<?= isset($fornecedor) ? $fornecedor["nome"] : "";?>" required oninput="this.value = this.value.toUpperCase()"/>
                             <div class="form-text">Informar a Razão Social da empresa</div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <label class="form-label" for="form8Example2">CNPJ</label>
                             <input type="text" name="cnpj" id="cnpj" class="form-control" maxlength="14" size="18"
                                 data-mask="00.000.000/0000-00" onblur="pesquisacnpj(this.value);" 
-                                value="<?= isset($fornecedor) ? $fornecedor["cnpj"] : "";?>"/>
+                                value="<?= isset($fornecedor) ? $fornecedor["cnpj"] : "";?>" required />
                             <div class="form-text">Informar o CNPJ completo</div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                             <label class="form-label" for="form8Example5">CEP</label>
                             <input type="text" name="cep" id="cep" class="form-control" size="10" maxlength="9" data-mask="00.000/000"
                                 onblur="pesquisacep(this.value);" 
-                                value="<?= isset($fornecedor) ? $fornecedor["cep"] : "";?>"/>
+                                value="<?= isset($fornecedor) ? $fornecedor["cep"] : "";?>" required/>
                             <div class="form-text">Informar apenas números</div>
 
                         </div>
@@ -49,8 +49,8 @@
                         <!-- Name input -->
                         <div class="form-outline">
                             <label class="form-label" for="form8Example3">Rua</label>
-                            <input type="text" name="endereco" id="rua" class="form-control" placeholder="" 
-                                value="<?= isset($fornecedor) ? $fornecedor["endereco"] : "";?>"/>
+                            <input type="text" name="endereco" id="rua" class="form-control text-uppercase" placeholder="" 
+                                value="<?= isset($fornecedor) ? $fornecedor["endereco"] : "";?>" required oninput="this.value = this.value.toUpperCase()"/>
 
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                         <!-- Name input -->
                         <div class="form-outline">
                             <label class="form-label" for="form8Example4">Bairro</label>
-                            <input type="text" name="bairro" id="bairro" class="form-control" placeholder="" 
-                                value="<?= isset($fornecedor) ? $fornecedor["bairro"] : "";?>"/>
+                            <input type="text" name="bairro" id="bairro" class="form-control text-uppercase" placeholder="" 
+                                value="<?= isset($fornecedor) ? $fornecedor["bairro"] : "";?>" required oninput="this.value = this.value.toUpperCase()"/>
 
                         </div>
                     </div>
@@ -67,16 +67,16 @@
                         <!-- Name input -->
                         <div class="form-outline">
                             <label class="form-label" for="form8Example4">Cidade</label>
-                            <input type="text" name="cidade" id="cidade" class="form-control" placeholder="" 
-                                value="<?= isset($fornecedor) ? $fornecedor["cidade"] : "";?>"/>
+                            <input type="text" name="cidade" id="cidade" class="form-control text-uppercase" placeholder="" 
+                                value="<?= isset($fornecedor) ? $fornecedor["cidade"] : "";?>" required oninput="this.value = this.value.toUpperCase()"/>
                         </div>
                     </div>
                     <div class="col-sm-1">
                         <!-- Name input -->
                         <div class="form-outline">
                             <label class="form-label" for="form8Example4">UF</label>
-                            <input type="text" name="estado" id="uf" class="form-control" 
-                                value="<?= isset($fornecedor) ? $fornecedor["estado"] : "";?>"/>
+                            <input type="text" name="estado" id="uf" class="form-control text-uppercase" 
+                                value="<?= isset($fornecedor) ? $fornecedor["estado"] : "";?>" required oninput="this.value = this.value.toUpperCase()"/>
                         </div>
                     </div>
                 </div>

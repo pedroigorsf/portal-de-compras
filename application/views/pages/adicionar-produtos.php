@@ -18,8 +18,8 @@
                             <table class="table justify-content-center">
                                 <thead class="table-primary">
                                     <tr>
-                                        <th scope="col" class="col-sm-9">Nome</th>
-                                        <th scope="col" class="col-sm-3 text-center">Ações</th>
+                                        <th scope="col" class="col-sm-11">Nome</th>
+                                        <th scope="col" class="col-sm-1 text-center">Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,15 +33,12 @@
                                                 </td>
                                                 <td>
                                                     <div class="col-sm text-center">
-                                                        <a class="btn btn-primary btn-sm"
-                                                            href="<?= base_url() ?>fornecedores/edit/<?= $p_cotacao['id'] ?>">
-                                                            <i class="bi bi-pencil"></i>
-                                                        </a>
 
                                                         <a class="btn btn-danger btn-sm"
                                                             href="javascript:goDelete(<?= $p_cotacao['id'] ?>)">
                                                             <i class="bi bi-trash"></i>
                                                         </a>
+
                                                     </div>
                                                 </td>
                                             </tr>
@@ -60,12 +57,34 @@
                                 <select class="form-select" name="fk-produtos" required>
                                     <option selected disabled hidden>Escolha uma opção</option>
                                     <?php foreach ($produtos as $produto): ?>
-                                        <option value="<?= $produto["id"] ?>">
+                                        <?php
+                                        // Adicione a condição na view para verificar se a opção já foi selecionada.
+                                        $opcaoJaSelecionada = false; // Inicializa como falso
+                                        if (isset($opcao) && $opcao == $produto["id"]) {
+                                            $opcaoJaSelecionada = true;
+                                        }
+                                        ?>
+                                        <option value="<?= $produto["id"] ?>" <?= $opcaoJaSelecionada ? 'disabled' : '' ?>>
                                             <?= $produto["nome"] ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
-                                <div class="form-text">Escolha um produto por vez e adicione.</div><br>
+
+                                <div class="row">
+                                    <?php
+                                    // Adicione a mensagem de erro na view com base na condição.
+                                    if ($opcaoJaSelecionada) {
+                                        echo '<p class="text-center">
+                                                Esta opção já foi selecionada. Escolha outra opção.
+                                                </p>';
+                                    } else {
+                                        echo '<p class="text-center">
+                                                Escolha um produto por vez e adicione.
+                                              </p>';
+                                    }
+                                    ?>
+                                </div>
+
 
 
                                 <button type="submit" class="btn btn-success">
@@ -82,3 +101,17 @@
                 </form>
     </div>
 </section>
+
+<script>
+    function goDelete(id) {
+        var myUrl = '<?= base_url();?>cotacoes/deletar_produto_cotacao/'
+            + <?= $cotacoes["id"] ?> + '/'
+            + id
+        if (confirm("Deseja apagar esse registro?")) {
+            window.location.href = myUrl;
+        } else {
+            return false;
+        }
+    }
+
+</script>

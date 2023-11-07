@@ -17,40 +17,41 @@
     </div> -->
 
 
-          
-            <div class="container col-sm-6 bg-primary rounded text-light text-center">
-              <h3>Pedido de Compra n°
-                <?= $cotacoes["id"]; ?>
-              </h3>
-            </div>
-         
 
-      <section id="counts" class="counts">
-        <div class="container">
+    <div class="container">
+      <h4>Pedido de Compra n°
+        <?= $cotacoes["id"]; ?>
+      </h4>
 
-          <div class="row justify-content-center text-center">
-
-
-                <div class="col-5">
-                  <h4>Fornecedores</h4>
-                  <a href="<?= base_url() ?>cotacoes/adicionar_fornecedores/<?= $cotacoes["id"] ?>"
-                    class="btn btn-primary btn-sm">Adicionar fornecedor</a>
-
-                </div>
+      <b>Solicitação:</b> <?= $cotacoes["solicitacao"]; ?><br>
+      <b>Período:</b> 
+                <?php
+                $data_formatada = date('d/m/Y', strtotime($cotacoes['data_inicial']));
+                echo $data_formatada;
+                ?> à 
+                <?php
+                $data_formatada = date('d/m/Y', strtotime($cotacoes['data_final']));
+                echo $data_formatada;
+                ?>
 
 
-                <div class="col-5">
-                  <h4>Produtos</h4>
-                  <a href="<?= base_url() ?>cotacoes/adicionar_produtos/<?= $cotacoes["id"] ?>"
-                    class="btn btn-primary btn-sm">Adicionar produto</a>
-                    
-                </div>
+      <div class="row py-4">
 
+        <div class="col">
+          <a href="<?= base_url() ?>cotacoes/adicionar_fornecedores/<?= $cotacoes["id"] ?>" class="btn btn-primary btn-sm">
+            <i class="bi bi-gear"></i>
+            Fornecedores</a>
 
-          </div>
-
+          <a href="<?= base_url() ?>cotacoes/adicionar_produtos/<?= $cotacoes["id"] ?>" class="btn btn-primary btn-sm">
+            <i class="bi bi-gear"></i>
+            Produtos</a>
         </div>
-      </section>
+      </div>
+    </div>
+
+
+
+
 
     <section>
       <div class="container">
@@ -59,11 +60,15 @@
           <div class="col">
             <h4>Respostas:</h4>
 
+
+            
+
+
             <table class="table table-bordered border-primary">
               <thead class="table-primary">
                 <tr>
                   <th class="col-sm" scope="col" colspan="2">Produto:
-
+                  
                   </th>
                 </tr>
               </thead>

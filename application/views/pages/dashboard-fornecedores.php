@@ -6,10 +6,9 @@
       <thead class="thead-dark table-primary">
         <tr>
           <th scope="col" class="col-sm-1">#</th>
-          <th scope="col" class="col-sm-5">Razão Social</th>
-          <th scope="col" class="col-sm-4">CNPJ</th>
+          <th scope="col" class="col-sm-9">Razão Social</th>
           <th scope="col" class="col-sm-1">Ações</th>
-        </tr>
+        </tr> 
       </thead>
       <tbody>
         <?php if ($fornecedores): ?>
@@ -20,9 +19,6 @@
               </td>
               <td>
                 <?= $fornecedor['nome']; ?>
-              </td>
-              <td>
-                <?= $fornecedor['cnpj']; ?>
               </td>
               <td>
                 <div class="col">

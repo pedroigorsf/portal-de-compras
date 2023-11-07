@@ -1,6 +1,12 @@
 
 
-(function() {
+(
+  
+  
+  
+  
+  
+  function() {
   "use strict";
 
   /**
