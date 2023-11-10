@@ -1,5 +1,5 @@
 <section id="faq" class="faq section-bg">
-  <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up" id="conteudo">
 
     <!-- <div class="position-relative m-4">
       <div class="progress" style="height: 1px;">
@@ -60,65 +60,50 @@
         <div class="row">
 
           <div class="col">
-            <h4>Respostas:</h4>
+            <h4>Cotação:</h4>
 
 
             <?php foreach ($produtos_cotacao as $p): ?>
 
-              <table class="table text-left border border-info table-hover">
-                <thead class="table-info text-bg-info">
-                  <tr>
-                    <th class="col-sm bg-primary text-white" scope="col" colspan="6">Produto:
-                      <?= $p['nome']; ?>
-                  </tr>
-                  <tr>
-                    <th class="col-sm-0 bg-info bg-gradient text-white">#</th>
-                    <th class="col-sm-6 bg-info bg-gradient text-white" scope="col">Fornecedor</th>
-                    <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Status</th>
-                    <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Quant.</th>
-                    <th class="col-sm-2 bg-info bg-gradient text-white" scope="col">Preço</th>
-                    <th class="col-sm-2 bg-info bg-gradient text-white" scope="col">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($fornecedores_cotacao as $f): ?>
+              <div class="table-responsive">
+                <table class="table text-left border border-info table-hover table-borderless">
+                  <thead class="table-info text-bg-info">
                     <tr>
-                      <td class="text-center bg-muted">
-                        <div class="form-check text-center">
-                          <input class="form-check-input text-center bg-gradient" type="radio" name="flexRadioDefault"
-                            id="flexRadioDefault1">
-                        </div>
-                      </td>
-                      <td>
-                        <?= $f['nome']; ?>
-                      </td>
-                      <td><i class="bi bi-circle-fill text-secondary"></i></td>
-                      <td>10</td>
-                      <td>R$ 1,99</td>
-                      <td>R$ 19,99</td>
-
-
+                      <th class="col-sm bg-primary text-white" scope="col" colspan="6">Produto:
+                        <?= $p['nome']; ?>
                     </tr>
-                  <?php endforeach; ?>
-                </tbody>
-              </table>
+                    <tr>
+                      <th class="col-sm-1 bg-info bg-gradient text-white">#</th>
+                      <th class="col-sm-7 bg-info bg-gradient text-white" scope="col">Fornecedor</th>
+                      <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Status</th>
+                      <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Quant.</th>
+                      <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Preço</th>
+                      <th class="col-sm-1 bg-info bg-gradient text-white" scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach ($fornecedores_cotacao as $f): ?>
+                      <tr>
+                        <td class="text-center bg-muted">
+                          <div class="form-check text-center">
+                            <input class="form-check-input text-center bg-gradient" type="radio" name="flexRadioDefault"
+                              id="flexRadioDefault1">
+                          </div>
+                        </td>
+                        <td>
+                          <?= $f['nome']; ?>
+                        </td>
+                        <td><i class="bi bi-circle-fill text-secondary"></i></td>
+                        <td>1</td>
+                        <td>R$ 0,00</td>
+                        <td>R$ 0,00</td>
+                      </tr>
+                    <?php endforeach; ?>
+                  </tbody>
+                </table>
+              </div>
               <hr class="py-2">
             <?php endforeach; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
           </div>
@@ -126,9 +111,8 @@
           <div class="row">
             <div class="col">
 
-              <a href="<?= base_url() ?>cotacoes/adicionar_fornecedores/<?= $cotacoes["id"] ?>"
-                class="btn btn-success btn-sm">
-                <i class="bi bi-cart-check"></i> Finalizar pedido de compra</a>
+              <button class="btn btn-success btn-sm" id="gerarPDF">
+                <i class="bi bi-cart-check"></i> Finalizar pedido de compra</button>
 
               <a href="<?= base_url() ?>cotacoes/" class="btn btn-secondary btn-sm">
                 <i class="bi bi-arrow-left"></i> Voltar</a>

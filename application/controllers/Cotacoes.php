@@ -3,9 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Cotacoes extends CI_Controller
 {
+	public function __construct(){
+		parent::__construct();
+		$this->load->library("session");
+	}
 
 	public function index()
 	{
+
 		$this->load->model("Cotacoes_model");
 		$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
 		$data["solicitantes"] = $this->Cotacoes_model->solicitantes();
@@ -59,7 +64,8 @@ class Cotacoes extends CI_Controller
 		redirect("cotacoes");
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
 		$this->load->model("Cotacoes_model");
 		$this->Cotacoes_model->destroy($id);
 		redirect("cotacoes");
@@ -84,6 +90,32 @@ class Cotacoes extends CI_Controller
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
 	}
+
+	public function adicionar_produtos($id)
+	{
+		$this->load->model("Produtos_model");
+		$data["produtos"] = $this->Produtos_model->listar_produtos();
+		$this->load->model("Cotacoes_model");
+		$data["cotacoes"] = $this->Cotacoes_model->painel($id);
+		$this->load->model("Produtos_model");
+		$data["produtos_cotacao"] = $this->Produtos_model->listar_produtos_cotacao($id);
+
+
+
+
+		// $this->session->set_flashdata('teste', 'douglas');
+
+
+
+
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('pages/adicionar-produtos', $data);
+		$this->load->view('templates/js');
+		$this->load->view('templates/footer');
+	}
+
 
 	public function adicionar_fornecedores($id)
 	{
@@ -112,43 +144,47 @@ class Cotacoes extends CI_Controller
 
 	public function cadastro_cotacao_fornecedor($id)
 	{
-		$novo = implode($_POST);
 		$this->load->model("Cotacoes_model");
-		$this->Cotacoes_model->cadastro_cotacao_fornecedor($id, $novo);
-		redirect("cotacoes/cadastro_cotacao_fornecedor/$id");
+		$data['fk_fornecedor'] = $_POST["fk-fornecedores"];
+		$data['id'] = $id;
+		$this->Cotacoes_model->cadastro_cotacao_fornecedor($data);
+		redirect("cotacoes/adicionar_fornecedores/$id");
 	}
 
-	public function adicionar_produtos($id)
-	{
-		$this->load->model("Produtos_model");
-		$data["produtos"] = $this->Produtos_model->listar_produtos();
-		$this->load->model("Cotacoes_model");
-		$data["cotacoes"] = $this->Cotacoes_model->painel($id);
-		$this->load->model("Produtos_model");
-		$data["produtos_cotacao"] = $this->Produtos_model->listar_produtos_cotacao($id);
-
-
-		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
-		$this->load->view('pages/adicionar-produtos', $data);
-		$this->load->view('templates/js');
-		$this->load->view('templates/footer');
-	}
 
 	public function cadastro_cotacao_produto($id)
 	{
 		$this->load->model("Cotacoes_model");
 		$data['fk_produtos'] = $_POST["fk-produtos"];
 		$data['id'] = $id;
-		$this->Cotacoes_model->cadastro_cotacao_produto($data);
-		redirect("cotacoes/adicionar_produtos/$id");
+		
+
+		$result = $this->Cotacoes_model->verificar_produtos_cotacao($data);
+		// print_r(count($result));
+		// exit;
+		if (count($result) <= 0) {
+			$this->Cotacoes_model->cadastro_cotacao_produto($data);
+			redirect("cotacoes/adicionar_produtos/$id");
+		} else {
+			echo "O produto já existe";
+		}
+		
 	}
 
-	public function deletar_produto_cotacao($id_cotacao, $id_produto){
+	public function deletar_fornecedor_cotacao($id_cotacao, $id_fornecedor)
+	{
+		$this->load->model("Cotacoes_model");
+		$this->Cotacoes_model->destroy_fornecedor_cotacao($id_cotacao, $id_fornecedor);
+		redirect("cotacoes/adicionar_fornecedores/$id_cotacao");
+	}
+
+	public function deletar_produto_cotacao($id_cotacao, $id_produto)
+	{
 		$this->load->model("Cotacoes_model");
 		$this->Cotacoes_model->destroy_produto_cotacao($id_cotacao, $id_produto);
 		redirect("cotacoes/adicionar_produtos/$id_cotacao");
 	}
+
 
 
 }

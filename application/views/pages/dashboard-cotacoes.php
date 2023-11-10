@@ -1,6 +1,7 @@
 <section id="faq" class="faq section-bg">
   <div class="container" data-aos="fade-up">
 
+    
 
     <table class="table border border-info">
       <thead class="thead-dark table-primary">

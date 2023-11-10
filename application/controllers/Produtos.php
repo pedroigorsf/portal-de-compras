@@ -31,8 +31,17 @@ class Produtos extends CI_Controller {
 	{
 		$novo = $_POST;
 		$this->load->model("Produtos_model");
-		$this->Produtos_model->cadastro($novo);
-		redirect("produtos");
+		try {
+			$this->Produtos_model->cadastro($novo);
+			
+			// $_SESSION['mensageria'] = 'Cadastrado com sucesso';
+			// print_r($this->session->mensageria);
+			// exit;
+			redirect("produtos");
+		}
+		catch(Exception $e){
+			$this->session->mark_as_flash('mensageria', array('tipo'=>'erro', 'mensagem'=>$e -> getMessage()));
+		}
 	}
 
 	public function edit($id){

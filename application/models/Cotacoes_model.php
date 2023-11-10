@@ -57,14 +57,15 @@ class Cotacoes_model extends CI_Model
         $sql = "INSERT INTO produtos_cotacao (`fk_cotacao`, `fk_produtos`) VALUES ({$data['id']}, {$prod});";
         $this->db->query($sql);
 
+        // select * from tb_usuario where user = 'pedro' and password = '123'
+
     }
 
-    public function cadastro_cotacao_fornecedor($id, $novo)
+    public function cadastro_cotacao_fornecedor($data)
     {
-
-        $this->db->query("INSERT INTO fornecedores_cotacao (fk_cotacao_fornecedor, fk_fornecedor)
-            VALUES ($id , $novo)
-            ");
+        $forn = $data['fk_fornecedor'];
+        $sql = "INSERT INTO fornecedores_cotacao (`fk_cotacao_fornecedor`, `fk_fornecedor`) VALUES ({$data['id']}, {$forn});";
+        $this->db->query($sql);
     }
 
     public function destroy_produto_cotacao($id_cotacao, $id_produto)
@@ -72,6 +73,13 @@ class Cotacoes_model extends CI_Model
         $this->db->where("fk_produtos", $id_produto);
         $this->db->where("fk_cotacao", $id_cotacao);
         $this->db->delete("produtos_cotacao");
+    }
+
+    public function destroy_fornecedor_cotacao($id_cotacao, $id_fornecedor)
+    {
+        $this->db->where("fk_fornecedor", $id_fornecedor);
+        $this->db->where("fk_cotacao_fornecedor", $id_cotacao);
+        $this->db->delete("fornecedores_cotacao");
     }
 
     public function listar_produtos_fornecedores($id)
@@ -87,5 +95,13 @@ class Cotacoes_model extends CI_Model
                       WHERE f.fk_cotacao_fornecedor = $id;")->result_array();
 
         return array_merge($produtos_por_cotacao, $fornecedores_por_cotacao);
+    }
+
+    public function verificar_produtos_cotacao($data){
+        
+        $this->db->where("fk_produtos", $data['fk_produtos']);
+        $this->db->where("fk_cotacao", $data['id']);
+        return $this->db->get("produtos_cotacao")->result_array();
+        
     }
 }

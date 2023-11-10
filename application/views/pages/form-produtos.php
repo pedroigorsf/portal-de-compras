@@ -1,6 +1,12 @@
 <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
 
+    <?php 
+        // if (!empty($_SESSION['mensageria'])){
+        //     echo $_SESSION['mensageria'];
+        //     exit;
+        // }
+    ?> 
 
         <fieldset class="scheduler-border">
             <legend class="scheduler-border">Cadastrar um novo produto</legend>
