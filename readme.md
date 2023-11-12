@@ -2,7 +2,7 @@
 
 O Portal de Compras consiste no procedimento de compra no mundo corporativo através de compradores x fornecedores, ajudando assim, os meios fiscais através da tratativa de dados e históricos fiscais.
 
-![Portal de Compras - GIF](https://github.com/pedroigorsf/portal-de-compras/raw/main/assets/project.gif)
+<img src="https://github.com/pedroigorsf/portal-de-compras/raw/main/assets/project.gif" alt="Portal de Compras - GIF" style="width:100%;">
 
 ### 📋 Pré-requisito
 
