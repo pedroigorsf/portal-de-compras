@@ -14,11 +14,14 @@ class Produtos_model extends CI_Model
 
     public function cadastro($novo)
     {
-        try {
-            $this->db->insert("tb_produtos", $novo);
-        } catch (Exception $e) {
-            throw new Exception('Falha na inserção '.$e->getMessage());
+        $this->db->insert("tb_produtos", $novo);
+
+        if ($this->db->affected_rows() >= 0){
+            return true;
+        } else {
+            return false;
         }
+
     }
 
     public function show($id)

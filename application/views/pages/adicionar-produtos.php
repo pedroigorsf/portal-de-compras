@@ -2,17 +2,23 @@
     <div class="container" data-aos="fade-up">
 
 
-    <?php
+        <?php
 
-    // print_r($this->session->teste);
-    // exit;
-
-    ?>
+        // print_r($this->session->teste);
+        // exit;
+        
+        ?>
 
         <fieldset class="scheduler-border">
             <legend class="scheduler-border py-4 text-center">Adicionar itens na cotação <b>n°
                     <?= $cotacoes["id"] ?>
                 </b></legend>
+
+
+
+
+
+
 
             <?php if (isset($cotacao)): ?>
                 <form action="<?= base_url() ?>cotacoes/update/<?= $cotacoes['id'] ?>" method="post">
@@ -21,14 +27,93 @@
                     <?php endif; ?>
 
                     <div class="row  justify-content-center">
-                        <div class="col-lg-8">
+                        <div class="col-sm-8">
+
+
+                            <div class="d-flex form-inline">
+
+                                <table class="table table-light">
+                                    <thead>
+                                        <tr>
+                                            <td class="col-sm-6">
+                                                Produtos
+                                            </td>
+                                            <td class="col-sm-1">
+                                                Quant.
+                                            </td>
+                                            <td class="col-sm-1">
+                                                UDM
+                                            </td>
+                                            <td class="col-sm-2">
+                                                Preço
+                                            </td>
+                                            <td class="col-sm-1">
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    
+
+                                        <tr>
+                                            <td>
+                                                <select class="form-select" name="fk-produtos"  data-show-subtext="true" data-live-search="true" required>
+                                                    <option value="" selected disabled hidden>
+                                                        Escolha uma opção
+                                                    </option>
+                                                    <?php foreach ($produtos as $produto): ?>
+
+                                                        <option value="<?= $produto["id"] ?>">
+                                                            <?= $produto["nome"] ?>
+                                                        </option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <input type="text" class="form-control" 
+                                                    data-mask="00000" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <input class="form-control" value="un" required disabled>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <input type="text" class="form-control"
+                                                    data-mask="R$ 000,000" required>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="submit" class="btn btn-success text-center">
+                                                    <i class="bi bi-plus"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="row col-sm">
+                                <p class="text-center">
+                                    Escolha um produto por vez e adicione.
+                                </p>
+                            </div>
+
+
+                            <br><br>
+
 
                             <table class="table border border-info">
                                 <thead class="table-primary">
                                     <tr>
                                         <th scope="col" class="col-sm-6">Nome</th>
                                         <th scope="col" class="col-sm-2">Quant.</th>
-                                        <th scope="col" class="col-sm-2">Preço Base</th>
+                                        <th scope="col" class="col-sm-2">Preço</th>
                                         <th scope="col" class="col-sm-1 text-center">Ação</th>
                                     </tr>
                                 </thead>
@@ -63,58 +148,11 @@
                                 </tbody>
                             </table>
 
-                            <div class="form-outline text-center">
-                                <label class="form-label" for="form8Example2">Produtos</label>
+                            <a href="<?= base_url() ?>cotacoes/painel/<?= $cotacoes['id'] ?>" type="reset"
+                                class="btn btn-secondary btn-sm col-sm"><i class="bi bi-arrow-left"></i>
+                                Voltar</a>
 
 
-                                <table class="table justify-content-center border border-info">
-                                    <tbody>
-                                        
-                                    <select class="form-select" name="fk-produtos" required>
-                                        <option selected disabled hidden>Escolha uma opção</option>
-                                        <?php foreach ($produtos as $produto): ?>
-                                            <?php
-                                            // Adicione a condição na view para verificar se a opção já foi selecionada.
-                                            $opcaoJaSelecionada = false; // Inicializa como falso
-                                            if (isset($opcao) && $opcao == $produto["id"]) {
-                                                $opcaoJaSelecionada = true;
-                                            }
-                                            ?>
-                                            <option value="<?= $produto["id"] ?>" <?= $opcaoJaSelecionada ? 'disabled' : '' ?>>
-                                                <?= $produto["nome"] ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-
-                                    </tbody>
-                                </table>
-
-                                    <div class="row">
-                                        <?php
-                                        // Adicione a mensagem de erro na view com base na condição.
-                                        if ($opcaoJaSelecionada) {
-                                            echo '<p class="text-center">
-                                                Esta opção já foi selecionada. Escolha outra opção.
-                                                </p>';
-                                        } else {
-                                            echo '<p class="text-center">
-                                                Escolha um produto por vez e adicione.
-                                              </p>';
-                                        }
-                                        ?>
-                                    </div>
-
-
-
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="bi bi-plus"></i>
-                                        Adicionar
-                                    </button>
-
-                                    <a href="<?= base_url() ?>cotacoes/painel/<?= $cotacoes['id'] ?>" type="reset"
-                                        class="btn btn-secondary"><i class="bi bi-arrow-left"></i>
-                                        Voltar</a>
-                            </div>
                         </div>
                     </div>
                 </form>

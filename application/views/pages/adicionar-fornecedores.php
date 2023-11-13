@@ -56,7 +56,7 @@
                                 <label class="form-label" for="form8Example2">Fornecedores</label>
 
                                 <select class="form-select" name="fk-fornecedores" required>
-                                    <option selected disabled hidden>Escolha uma opção</option>
+                                    <option value="" selected disabled hidden>Escolha uma opção</option>
                                     <?php foreach ($fornecedores as $fornecedor): ?>
                                         <?php
                                         // Adicione a condição na view para verificar se a opção já foi selecionada.
