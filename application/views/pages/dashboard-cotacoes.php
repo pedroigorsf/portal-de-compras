@@ -40,7 +40,7 @@
               </td> -->
 
               <td>
-                <button class="btn btn-success btn-sm active">Aprovado</button>
+                <button class="btn btn-info btn-sm">Informado</button>
               </td>
 
             </tr>

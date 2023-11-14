@@ -37,8 +37,10 @@ class Produtos_model extends CI_Model
 
     public function destroy($id)
     {
-        $this->db->where("id", $id);
-        return $this->db->delete("tb_produtos");
+        return $this->db->query("UPDATE tb_produtos
+                                 SET stats = 0
+                                 WHERE id = $id");
+        
     }
 
     public function listar_produtos_cotacao($id)

@@ -30,6 +30,7 @@ class Produtos extends CI_Controller {
 	public function cadastro()
 	{
 		$novo = $_POST;
+		$novo['stats'] = '1';
 		$this->load->model("Produtos_model");
 		try {
 			$this->Produtos_model->cadastro($novo);

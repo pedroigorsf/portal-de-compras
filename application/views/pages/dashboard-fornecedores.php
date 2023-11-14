@@ -6,7 +6,8 @@
       <thead class="thead-dark table-primary">
         <tr>
           <th scope="col" class="col-sm-1">#</th>
-          <th scope="col" class="col-sm-9">Razão Social</th>
+          <th scope="col" class="col-sm-8">Razão Social</th>
+          <th scope="col" class="col-sm-2">Status</th>
           <th scope="col" class="col-sm-1">Ações</th>
         </tr> 
       </thead>
@@ -21,13 +22,18 @@
                 <?= $fornecedor['nome']; ?>
               </td>
               <td>
+                <?php
+                  if ($fornecedor['stats']) {
+                    echo "<button class='btn btn-success btn-sm w-50' disabled>Ativo</button>";
+                  } else {
+                    echo "<button class='btn btn-danger btn-sm w-50' disabled>Inativo</button>";
+                  }
+                  ?>
+              </td>
+              <td>
                 <div class="col">
                   <a class="btn btn-primary btn-sm" href="<?= base_url() ?>/fornecedores/edit/<?= $fornecedor['id'] ?>">
                     <i class="bi bi-pencil"></i>
-                  </a>
-
-                  <a class="btn btn-danger btn-sm" href="javascript:goDelete(<?= $fornecedor['id'] ?>)">
-                    <i class="bi bi-trash"></i>
                   </a>
                 </div>
               </td>

@@ -36,16 +36,13 @@
                                     <thead>
                                         <tr>
                                             <td class="col-sm-6">
-                                                Produtos
-                                            </td>
-                                            <td class="col-sm-1">
-                                                Quant.
-                                            </td>
-                                            <td class="col-sm-1">
-                                                UDM
+                                                Produto
                                             </td>
                                             <td class="col-sm-2">
-                                                Preço
+                                                Quant.
+                                            </td>
+                                            <td class="col-sm-2">
+                                                UDM
                                             </td>
                                             <td class="col-sm-1">
                                             </td>
@@ -62,28 +59,23 @@
                                                         Escolha uma opção
                                                     </option>
                                                     <?php foreach ($produtos as $produto): ?>
-
+                                                        <?php if($produto["stats"]): ?>
                                                         <option value="<?= $produto["id"] ?>">
                                                             <?= $produto["nome"] ?>
                                                         </option>
+                                                        <?php endif; ?>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </td>
                                             <td>
                                                 <div>
-                                                    <input type="text" class="form-control" 
+                                                    <input type="text" name="quantidade" class="form-control" 
                                                     data-mask="00000" required>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div>
-                                                    <input class="form-control" value="un" required disabled>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div>
-                                                    <input type="text" class="form-control"
-                                                    data-mask="R$ 000,000" required>
+                                                    <input class="form-control" value="Unidade" required disabled>
                                                 </div>
                                             </td>
                                             <td>
@@ -113,7 +105,7 @@
                                     <tr>
                                         <th scope="col" class="col-sm-6">Nome</th>
                                         <th scope="col" class="col-sm-2">Quant.</th>
-                                        <th scope="col" class="col-sm-2">Preço</th>
+                                        <th scope="col" class="col-sm-2">UDM</th>
                                         <th scope="col" class="col-sm-1 text-center">Ação</th>
                                     </tr>
                                 </thead>
@@ -126,8 +118,8 @@
                                                 <td>
                                                     <?= $p_cotacao["nome"] ?>
                                                 </td>
-                                                <td>1</td>
-                                                <td>R$ 0,00</td>
+                                                <td><?= $p_cotacao['quantidade'] ?></td>
+                                                <td>Unidade</td>
                                                 <td>
                                                     <div class="col-sm text-center">
 

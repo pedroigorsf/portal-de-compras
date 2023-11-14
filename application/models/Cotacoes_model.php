@@ -53,8 +53,11 @@ class Cotacoes_model extends CI_Model
 
     public function cadastro_cotacao_produto($data)
     {
+        $id = $data['id'];
         $prod = $data['fk_produtos'];
-        $sql = "INSERT INTO produtos_cotacao (`fk_cotacao`, `fk_produtos`) VALUES ({$data['id']}, {$prod});";
+        $quant = $data['quantidade'];
+        $sql = "INSERT INTO produtos_cotacao (`fk_cotacao`, `fk_produtos`, `preco`,`quantidade`) 
+        VALUES ($id, $prod, 0, $quant);";
         $this->db->query($sql);
 
         // select * from tb_usuario where user = 'pedro' and password = '123'
@@ -103,5 +106,19 @@ class Cotacoes_model extends CI_Model
         $this->db->where("fk_cotacao", $data['id']);
         return $this->db->get("produtos_cotacao")->result_array();
         
+    }
+
+    public function atulizar_cotacao_produto($data){
+    }
+
+    public function verificar_fornecedor_cotacao($data){
+        
+        $this->db->where("fk_fornecedor", $data['fk_fornecedor']);
+        $this->db->where("fk_cotacao_fornecedor", $data['id']);
+        return $this->db->get("fornecedores_cotacao")->result_array();
+        
+    }
+
+    public function atulizar_cotacao_fornecedor($data){
     }
 }

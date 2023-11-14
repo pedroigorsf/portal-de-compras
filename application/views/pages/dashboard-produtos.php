@@ -6,14 +6,16 @@
       <thead class="thead-dark table-primary">
         <tr>
           <th scope="col" class="col-sm-1">#</th>
-          <th scope="col" class="col-sm-7">Nome</th>
-          <th scope="col" class="col-sm-3">Marca</th>
+          <th scope="col" class="col-sm-6">Nome</th>
+          <th scope="col" class="col-sm-2">Marca</th>
+          <th scope="col" class="col-sm-2">Status</th>
           <th scope="col" class="col-sm-1">Ações</th>
         </tr>
       </thead>
       <tbody>
         <?php if ($produtos): ?>
           <?php foreach ($produtos as $produto): ?>
+
             <tr>
               <td>
                 <?= $produto['id']; ?>
@@ -25,19 +27,24 @@
                 <?= $produto['marca']; ?>
               </td>
               <td>
+                <?php
+                if ($produto['stats']) {
+                  echo "<button class='btn btn-success btn-sm w-50' disabled>Ativo</button>";
+                } else {
+                  echo "<button class='btn btn-danger btn-sm w-50' disabled>Inativo</button>";
+                }
+                ?>
+              </td>
+              
+              <td>
                 <div class="col">
                   <a class="btn btn-primary btn-sm" href="<?= base_url() ?>produtos/edit/<?= $produto['id'] ?>">
                     <i class="bi bi-pencil"></i>
                   </a>
-
-                  <a class="btn btn-danger btn-sm" href="javascript:goDelete(<?= $produto['id'] ?>)">
-                    <i class="bi bi-trash"></i>
-                  </a>
-
-
                 </div>
               </td>
             </tr>
+
           <?php endforeach; ?>
         <?php else: ?>
           <tr>
@@ -52,7 +59,7 @@
     <script>
       function goDelete(id) {
         var myUrl = 'produtos/delete/' + id
-        if (confirm("Deseja apagar esse registro?")) {
+        if (confirm("Deseja intivar esse registro?")) {
           window.location.href = myUrl;
         } else {
           return false;

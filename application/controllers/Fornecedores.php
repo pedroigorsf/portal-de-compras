@@ -30,6 +30,7 @@ class Fornecedores extends CI_Controller {
 	public function cadastro()
 	{
 		$novo = $_POST;
+		$novo['stats'] = '1';
 		$this->load->model("Fornecedores_model");
 		$this->Fornecedores_model->cadastro($novo);
 		redirect("fornecedores");	
