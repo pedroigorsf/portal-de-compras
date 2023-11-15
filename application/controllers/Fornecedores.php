@@ -29,11 +29,22 @@ class Fornecedores extends CI_Controller {
 
 	public function cadastro()
 	{
-		$novo = $_POST;
-		$novo['stats'] = '1';
+		$data = $_POST;
+		$data['stats'] = '1';
 		$this->load->model("Fornecedores_model");
-		$this->Fornecedores_model->cadastro($novo);
-		redirect("fornecedores");	
+
+
+		$result = $this->Fornecedores_model->verificar_fornecedor($data);
+		
+		if (count($result) <= 0) {
+			$this->Fornecedores_model->cadastro($data);
+			redirect("fornecedores");
+		} else {
+			redirect("fornecedores");
+		}
+
+		
+			
 	}
 
 	public function edit($id){

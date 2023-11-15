@@ -47,4 +47,11 @@ class Fornecedores_model extends CI_Model
         ")->result_array();
     }
 
+    public function verificar_fornecedor($data){
+        
+        $this->db->where("cnpj", $data['cnpj']);
+        return $this->db->get("tb_fornecedores")->result_array();
+        
+    }
+
 }
