@@ -1,12 +1,13 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Produtos extends CI_Controller {
+class Produtos extends CI_Controller
+{
 
 	public function index()
 	{
-        $this->load->model("Produtos_model");
-        $data["produtos"] = $this->Produtos_model->listar_produtos();
+		$this->load->model("Produtos_model");
+		$data["produtos"] = $this->Produtos_model->listar_produtos();
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
@@ -15,11 +16,11 @@ class Produtos extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-    public function novo()
-	{	
+	public function novo()
+	{
 		$this->load->model("Produtos_model");
 		$data["produtos"] = $this->Produtos_model->listar_produtos();
-		
+
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-produtos', $data);
@@ -29,23 +30,27 @@ class Produtos extends CI_Controller {
 
 	public function cadastro()
 	{
-		$novo = $_POST;
-		$novo['stats'] = '1';
+		$data = $_POST;
+		$data['stats'] = '1';
 		$this->load->model("Produtos_model");
-		try {
-			$this->Produtos_model->cadastro($novo);
-			
-			// $_SESSION['mensageria'] = 'Cadastrado com sucesso';
-			// print_r($this->session->mensageria);
-			// exit;
-			redirect("produtos");
+
+
+		$result = $this->Produtos_model->verificar_produto($data);
+		
+		if (count($result) <= 0) {
+			$this->Produtos_model->cadastro($data);
+			redirect("produtos/");
+		} else {
+			redirect("produtos/");
 		}
-		catch(Exception $e){
-			$this->session->mark_as_flash('mensageria', array('tipo'=>'erro', 'mensagem'=>$e -> getMessage()));
-		}
+
+		// $this->Produtos_model->cadastro($data);
+		// redirect("produtos");
+
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
 		$this->load->model("Produtos_model");
 		$data["produto"] = $this->Produtos_model->show($id);
 
@@ -56,17 +61,19 @@ class Produtos extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function update($id){
+	public function update($id)
+	{
 		$this->load->model("Produtos_model");
 		$produto = $_POST;
 		$this->Produtos_model->update($id, $produto);
 		redirect("produtos");
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
 		$this->load->model("Produtos_model");
 		$this->Produtos_model->destroy($id);
 		redirect("produtos");
 	}
-	
+
 }

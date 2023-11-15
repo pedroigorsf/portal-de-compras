@@ -12,9 +12,9 @@ class Produtos_model extends CI_Model
         return $this->db->get("tb_categorias")->result_array();
     }
 
-    public function cadastro($novo)
+    public function cadastro($data)
     {
-        $this->db->insert("tb_produtos", $novo);
+        $this->db->insert("tb_produtos", $data);
 
         if ($this->db->affected_rows() >= 0){
             return true;
@@ -51,6 +51,13 @@ class Produtos_model extends CI_Model
             JOIN tb_produtos ON produtos_cotacao.fk_produtos = tb_produtos.id
             WHERE produtos_cotacao.fk_cotacao = $id;
         ")->result_array();
+    }
+
+    public function verificar_produto($data){
+        
+        $this->db->where("nome", $data['nome']);
+        return $this->db->get("tb_produtos")->result_array();
+        
     }
 
 

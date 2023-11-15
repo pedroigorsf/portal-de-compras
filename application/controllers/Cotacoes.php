@@ -134,17 +134,16 @@ class Cotacoes extends CI_Controller
 		$this->load->model("Cotacoes_model");
 		$data['fk_fornecedor'] = $_POST["fk-fornecedores"];
 		$data['id'] = $id;
-		// $this->Cotacoes_model->cadastro_cotacao_fornecedor($data);
 
 		$result = $this->Cotacoes_model->verificar_fornecedor_cotacao($data);
-		// print_r(count($result));
-		// exit;
+
 		if (count($result) <= 0) {
 			$this->Cotacoes_model->cadastro_cotacao_fornecedor($data);
 			redirect("cotacoes/adicionar_fornecedores/$id");
 		} else {
-			$this->Cotacoes_model->atulizar_cotacao_fornecedor($data);
+			// $this->Cotacoes_model->atulizar_cotacao_fornecedor($data);
 			redirect("cotacoes/adicionar_fornecedores/$id");
+			// model sem nada, apenas atualiza a página
 		}
 
 

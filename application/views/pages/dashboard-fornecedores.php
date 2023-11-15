@@ -32,7 +32,7 @@
               </td>
               <td>
                 <div class="col">
-                  <a class="btn btn-primary btn-sm" href="<?= base_url() ?>/fornecedores/edit/<?= $fornecedor['id'] ?>">
+                  <a class="btn btn-primary btn-sm" href="<?= base_url() ?>fornecedores/edit/<?= $fornecedor['id'] ?>">
                     <i class="bi bi-pencil"></i>
                   </a>
                 </div>
