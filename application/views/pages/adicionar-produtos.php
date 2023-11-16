@@ -156,7 +156,7 @@
         var myUrl = '<?= base_url(); ?>cotacoes/deletar_produto_cotacao/'
             + <?= $cotacoes["id"] ?> + '/'
             + id
-        if (confirm("Deseja apagar esse registro?")) {
+        if (confirm("Deseja remover este produto da cotação?")) {
             window.location.href = myUrl;
         } else {
             return false;

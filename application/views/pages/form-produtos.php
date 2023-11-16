@@ -9,11 +9,15 @@
         ?>
 
         <fieldset class="scheduler-border">
-        <?php if (isset($fornecedor)): ?>
-            <legend class="scheduler-border py-2">Alterar produto</legend>
+            <?php if (isset($produto)): ?>
+                <legend class="py-1 text-center text-uppercase text-bg-primary rounded">
+                    Alterar produto
+                </legend>
             <?php else: ?>
-                <legend class="scheduler-border py-2">Cadastrar um novo produto</legend>
-                <?php endif; ?>
+                <legend class="py-1 text-center text-uppercase text-bg-primary rounded">
+                    Cadastrar um novo produto
+                </legend>
+            <?php endif; ?>
 
             <?php if (isset($produto)): ?>
                 <form action="<?= base_url() ?>produtos/update/<?= $produto['id'] ?>" method="post">
@@ -21,79 +25,88 @@
                     <form action="<?= base_url() ?>produtos/cadastro" method="post">
                     <?php endif; ?>
 
-                    <div class="row">
-                        <?php if (isset($produto)): ?>
-                            <div class="col-sm-2">
-                                <label class="form-label" for="form8Examp">Status</label><br>
 
-                                <input type="radio" value="1" class="btn-check btn w-100" name="stats" id="success-outlined"
-                                    autocomplete="off" <?= $produto['stats'] == 1 ? 'checked' : ""; ?>>
-                                <label class="btn btn-outline-success btn" for="success-outlined">Ativo</label>
 
-                                <input type="radio" value="0" class="btn-check btn w-100" name="stats" id="danger-outlined"
-                                    autocomplete="off" <?= $produto['stats'] == 0 ? 'checked' : ""; ?>>
-                                <label class="btn btn-outline-danger btn" for="danger-outlined">Inativo</label>
-                            </div>
-                        <?php endif; ?>
 
-                        <div class="col-sm-7">
-                            <!-- Name input -->
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example1">Nome</label>
-                                <input type="text" name="nome" id="form8Example1" class="text-uppercase form-control"
-                                    value="<?= isset($produto) ? $produto["nome"] : ""; ?>"
-                                    oninput="this.value = this.value.toUpperCase()" required />
-                                <div class="form-text">Qual o nome do produto que deseja cadastrar?</div>
 
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col">
+                            <div class="card card-registration my-5">
+                                <div class="row g-0">
+                                    <div class="col-xl-2 d-none d-xl-block">
+                                        <img src="<?= base_url() ?>assets/img/produto.jpg" alt="Sample photo"
+                                            class="img-fluid"
+                                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                    </div>
+                                    <div class="col-xl-10">
+                                        <div class="card-body p-md-5 text-black">
+
+
+                                            <?php if (isset($produto)): ?>
+                                                <div class="row">
+                                                    <div class="d-md-flex justify-content-start align-items-center mb-4">
+
+                                                        <h6 class="mb-0 me-4">Status* </h6>
+
+                                                        <div class="form-check form-check-inline mb-0 me-4">
+                                                            <input class="form-check-input" type="radio" name="stats"
+                                                                id="femaleGender" value="1" <?= $produto['stats'] == 1 ? 'checked' : ""; ?> required />
+                                                            <label class="form-check-label" for="femaleGender">Ativo</label>
+                                                        </div>
+
+                                                        <div class="form-check form-check-inline mb-0 me-4">
+                                                            <input class="form-check-input" type="radio" name="stats"
+                                                                id="maleGender" value="0" <?= $produto['stats'] == 0 ? 'checked' : ""; ?> required />
+                                                            <label class="form-check-label" for="maleGender">Inativo</label>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <div class="row">
+                                                <div class="col-md-8 mb-4">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="form3Example1m">
+                                                            Produto*
+                                                        </label>
+                                                        <input type="text" id="form3Example1m" name="nome"
+                                                            class="form-control form-control-lg"
+                                                            value="<?= isset($produto) ? $produto["nome"] : ""; ?>"
+                                                            required oninput="this.value = this.value.toUpperCase()" />
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 mb-4">
+                                                    <div class="form-outline">
+                                                        <label class="form-label" for="form3Example1m1">Unidade de Medida*</label>
+                                                        <input type="text" id="form3Example1m1"
+                                                            class="form-control form-control-lg text-uppercase" name="udm" id="udm"
+                                                            class="form-control"
+                                                            value="<?= isset($produto) ? $produto["udm"] : ""; ?>" required oninput="this.value = this.value.toUpperCase()"
+                                                            required />
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+
+
+                                            <div class="d-flex justify-content-end pt-3">
+                                            <a href="<?= base_url() ?>produtos" class="btn btn-light btn-md">
+                                                    Cancelar
+                                                </a>
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-md ms-2">Salvar</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- <div class="col-sm">
-                            
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example4">UDM</label>
-                                <select class="form-select" name="categoria" aria-label="Default select example"
-                                    placeholder="Escolha uma opção" required>
-
-                                    <option value="" disabled selected hidden>Selecione uma opção</option>
-
-
-
-                                </select>
-
-
-
-                                <div class="form-text">Unidade de Medida.</div>
-                            </div>
-                        </div> -->
-
-
-                        <div class="col-sm-3">
-                            <!-- Name input -->
-                            <div class="form-outline">
-                                <label class="form-label" for="form8Example3">Marca</label>
-                                <input type="text" name="marca" id="form8Example3" class="text-uppercase form-control"
-                                    value="<?= isset($produto) ? $produto["marca"] : ""; ?>" required
-                                    oninput="this.value = this.value.toUpperCase()" />
-                                <div class="form-text">Qual a marca?</div>
-
-                            </div>
-                        </div>
-
-        </fieldset>
-
-
-        <div class="col py-5">
-            <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="<?= base_url() ?>produtos" class="btn btn-danger">Cancelar</a>
-        </div>
-
-        </form>
-
-    </div>
-
-
-
+                    </div>
 
     </div>
 </section>

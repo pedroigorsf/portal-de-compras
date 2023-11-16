@@ -202,7 +202,7 @@
         <div class="row">
           <div class="col">
             <button class="btn btn-success btn-sm" id="gerarPDF">
-              <i class="bi bi-cart-check"></i> Finalizar pedido de compra</button>
+              <i class="bi bi-cart-check"></i> Enviar para aprovação</button>
             <a href="<?= base_url() ?>cotacoes/" class="btn btn-secondary btn-sm">
               <i class="bi bi-arrow-left"></i> Voltar</a>
           </div>

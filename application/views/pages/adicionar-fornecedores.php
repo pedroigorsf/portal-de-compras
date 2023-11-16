@@ -1,3 +1,5 @@
+
+
 <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
 
@@ -19,6 +21,17 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
                             <div class="d-flex form-inline">
 
                                 <table class="table table-light">
@@ -30,13 +43,13 @@
 
                                             <td class="col-sm-1">
                                             </td>
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <select class="form-select" name="fk-fornecedores"
-                                                    data-show-subtext="true" data-live-search="true" required>
+                                                <select class="form-select" name="fk-fornecedores" required>
                                                     <option value="" selected disabled hidden>
                                                         Escolha uma opção
                                                     </option>
@@ -67,17 +80,6 @@
                                 </p>
                             </div>
                             <br><br>
-
-
-
-
-
-
-
-
-
-
-
 
 
                             <table class="table justify-content-center border border-info">
@@ -131,16 +133,19 @@
     </div>
 </section>
 
+
+
+
+
 <script>
     function goDelete(id) {
         var myUrl = '<?= base_url(); ?>cotacoes/deletar_fornecedor_cotacao/'
             + <?= $cotacoes["id"] ?> + '/'
             + id
-        if (confirm("Deseja apagar esse registro?")) {
+        if (confirm("Deseja remover este fornecedor da cotação?")) {
             window.location.href = myUrl;
         } else {
             return false;
         }
     }
-
 </script>

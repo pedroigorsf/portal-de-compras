@@ -1,14 +1,34 @@
 <section id="faq" class="faq section-bg">
   <div class="container" data-aos="fade-up">
 
+  <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <strong><i class="bi bi-check-circle-fill"></i></strong> Cadastro realizado com sucesso!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata('duplicated')): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong><i class="bi bi-info-circle-fill"></i></strong> ERRO: Já existe uma empresa cadastrada com o CNPJ informado.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata('error')): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong><i class="bi bi-exclamation-circle-fill"></i></strong> É necessário preencher todos os campos.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif ?>
 
     <table class="table border border-info">
       <thead class="thead-dark table-primary">
         <tr>
           <th scope="col" class="col-sm-1">#</th>
-          <th scope="col" class="col-sm-8">Razão Social</th>
-          <th scope="col" class="col-sm-2">Status</th>
-          <th scope="col" class="col-sm-1">Ações</th>
+          <th scope="col" class="col-sm-9">Razão Social</th>
+          <th scope="col" class="col-sm-1 text-center">Status</th>
+          <th scope="col" class="col-sm-1 text-center">Ações</th>
         </tr> 
       </thead>
       <tbody>
@@ -21,21 +41,23 @@
               <td>
                 <?= $fornecedor['nome']; ?>
               </td>
-              <td>
+              <td class="text-center">
                 <?php
                   if ($fornecedor['stats']) {
-                    echo "<button class='btn btn-success btn-sm w-50' disabled>Ativo</button>";
+                    echo "<button class='btn btn-success btn-sm' disabled>
+                    <i class='bi bi-check-circle'></i>
+                    </button>";
                   } else {
-                    echo "<button class='btn btn-danger btn-sm w-50' disabled>Inativo</button>";
+                    echo "<button class='btn btn-danger btn-sm' disabled>
+                    <i class='bi bi-dash-circle'></i>
+                    </button>";
                   }
                   ?>
               </td>
-              <td>
-                <div class="col">
+              <td class="text-center">
                   <a class="btn btn-primary btn-sm" href="<?= base_url() ?>fornecedores/edit/<?= $fornecedor['id'] ?>">
                     <i class="bi bi-pencil"></i>
                   </a>
-                </div>
               </td>
             </tr>
           <?php endforeach; ?>

@@ -5,13 +5,13 @@ class Cotacoes extends CI_Controller
 {
 	public function __construct(){
 		parent::__construct();
-		$this->load->library("session");
+		$this->load->model("Cotacoes_model");
 	}
 
 	public function index()
 	{
 
-		$this->load->model("Cotacoes_model");
+		
 		$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
 		$data["solicitantes"] = $this->Cotacoes_model->solicitantes();
 
@@ -24,7 +24,6 @@ class Cotacoes extends CI_Controller
 
 	public function novo()
 	{
-		$this->load->model("Cotacoes_model");
 		$data["solicitantes"] = $this->Cotacoes_model->solicitantes();
 		$data["aprovadores"] = $this->Cotacoes_model->aprovadores();
 
@@ -39,14 +38,45 @@ class Cotacoes extends CI_Controller
 	{
 		$novo = $_POST;
 		$novo['fk_usuario'] = '5';
-		$this->load->model("Cotacoes_model");
 		$this->Cotacoes_model->cadastro($novo);
 		redirect("cotacoes");
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$stats = 1;
+			$fornecedor = $this->input->post('nome');
+			$cnpj = $this->input->post('cnpj');
+			$cep = $this->input->post('cep');
+			$endereco = $this->input->post('endereco');
+			$data = array(
+				'stats' => $stats,
+				'nome' => $fornecedor,
+				'cnpj' => $cnpj,
+				'cep' => $cep,
+				'endereco' => $endereco,
+			);
+
+			$result = $this->Fornecedores_model->verificar_fornecedor($data);
+
+			if (count($result) <= 0) 
+			{
+				$this->Fornecedores_model->cadastro($data);
+				$this->session->set_flashdata('success', 'Registrado com sucesso!');
+			} 
+			else 
+			{
+				$this->session->set_flashdata('duplicated', 'Dado duplicado!');
+			}
+		redirect("fornecedores/");
+		} 
+		else 
+		{
+			$this->session->set_flashdata('error', 'Ocorreu algum erro inesperado');
+			redirect("fornecedores/");
+		}
 	}
 
 	public function edit($id)
 	{
-		$this->load->model("Cotacoes_model");
 		$data["cotacao"] = $this->Cotacoes_model->show($id);
 
 		$this->load->view('templates/header');
@@ -58,7 +88,6 @@ class Cotacoes extends CI_Controller
 
 	public function update($id)
 	{
-		$this->load->model("Cotacoes_model");
 		$cotacao = $_POST;
 		$this->Cotacoes_model->update($id, $cotacao);
 		redirect("cotacoes");
@@ -66,14 +95,12 @@ class Cotacoes extends CI_Controller
 
 	public function delete($id)
 	{
-		$this->load->model("Cotacoes_model");
 		$this->Cotacoes_model->destroy($id);
 		redirect("cotacoes");
 	}
 
 	public function painel($id)
 	{
-		$this->load->model("Cotacoes_model");
 		$data["cotacoes"] = $this->Cotacoes_model->painel($id);
 		$this->load->model("Fornecedores_model");
 		$data["fornecedores_cotacao"] = $this->Fornecedores_model->listar_fornecedor_cotacao($id);
@@ -91,7 +118,6 @@ class Cotacoes extends CI_Controller
 	{
 		$this->load->model("Produtos_model");
 		$data["produtos"] = $this->Produtos_model->listar_produtos();
-		$this->load->model("Cotacoes_model");
 		$data["cotacoes"] = $this->Cotacoes_model->painel($id);
 		$this->load->model("Produtos_model");
 		$data["produtos_cotacao"] = $this->Produtos_model->listar_produtos_cotacao($id);
@@ -108,7 +134,6 @@ class Cotacoes extends CI_Controller
 	{
 		$this->load->model("Fornecedores_model");
 		$data["fornecedores"] = $this->Fornecedores_model->listar_fornecedor();
-		$this->load->model("Cotacoes_model");
 		$data["cotacoes"] = $this->Cotacoes_model->painel($id);
 		$this->load->model("Fornecedores_model");
 		$data["fornecedores_cotacao"] = $this->Fornecedores_model->listar_fornecedor_cotacao($id);
@@ -123,7 +148,6 @@ class Cotacoes extends CI_Controller
 
 	public function cotacao_fornecedor($id)
 	{
-		$this->load->model("Cotacoes_model");
 		$cotacao = $_POST;
 		$this->Cotacoes_model->update($id, $cotacao);
 		redirect("painel");
@@ -131,7 +155,6 @@ class Cotacoes extends CI_Controller
 
 	public function cadastro_cotacao_fornecedor($id)
 	{
-		$this->load->model("Cotacoes_model");
 		$data['fk_fornecedor'] = $_POST["fk-fornecedores"];
 		$data['id'] = $id;
 
@@ -153,7 +176,6 @@ class Cotacoes extends CI_Controller
 
 	public function cadastro_cotacao_produto($id)
 	{
-		$this->load->model("Cotacoes_model");
 		$data['fk_produtos'] = $_POST["fk-produtos"];
 		$data['quantidade'] = $_POST["quantidade"];
 		$data['id'] = $id;
@@ -174,14 +196,12 @@ class Cotacoes extends CI_Controller
 
 	public function deletar_fornecedor_cotacao($id_cotacao, $id_fornecedor)
 	{
-		$this->load->model("Cotacoes_model");
 		$this->Cotacoes_model->destroy_fornecedor_cotacao($id_cotacao, $id_fornecedor);
 		redirect("cotacoes/adicionar_fornecedores/$id_cotacao");
 	}
 
 	public function deletar_produto_cotacao($id_cotacao, $id_produto)
 	{
-		$this->load->model("Cotacoes_model");
 		$this->Cotacoes_model->destroy_produto_cotacao($id_cotacao, $id_produto);
 		redirect("cotacoes/adicionar_produtos/$id_cotacao");
 	}

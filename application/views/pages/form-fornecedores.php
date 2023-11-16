@@ -3,7 +3,7 @@
 
         <fieldset class="scheduler-border">
             <?php if (isset($fornecedor)): ?>
-                <legend class="scheduler-border py-2">Alterar empresa</legend>
+                <legend class="py-1 text-center text-uppercase text-bg-primary rounded">Alterar empresa</legend>
             <?php else: ?>
                 <legend class="py-1 text-center text-uppercase text-bg-primary rounded">Cadastrar uma nova empresa</legend>
             <?php endif; ?>
@@ -34,7 +34,7 @@
                                                 <div class="row">
                                                     <div class="d-md-flex justify-content-start align-items-center mb-4">
 
-                                                        <h6 class="mb-0 me-4">Status: </h6>
+                                                        <h6 class="mb-0 me-4">Status* </h6>
 
                                                         <div class="form-check form-check-inline mb-0 me-4">
                                                             <input class="form-check-input" type="radio" name="stats"
@@ -56,7 +56,7 @@
                                                 <div class="col-md-12 mb-4">
                                                     <div class="form-outline">
                                                         <label class="form-label" for="form3Example1m">Razão
-                                                            Social</label>
+                                                            Social*</label>
                                                         <input type="text" id="form3Example1m" name="nome"
                                                             class="form-control form-control-lg"
                                                             value="<?= isset($fornecedor) ? $fornecedor["nome"] : ""; ?>"
@@ -66,7 +66,7 @@
                                                 </div>
                                                 <div class="col-md-6 mb-4">
                                                     <div class="form-outline">
-                                                        <label class="form-label" for="form3Example1n">CNPJ</label>
+                                                        <label class="form-label" for="form3Example1n">CNPJ*</label>
                                                         <input type="text" id="form3Example1n"
                                                             class="form-control form-control-lg" name="cnpj" id="cnpj"
                                                             maxlength="14" size="18" data-mask="00.000.000/0000-00"
@@ -77,7 +77,7 @@
                                                 </div>
                                                 <div class="col-md-4 mb-4">
                                                     <div class="form-outline">
-                                                        <label class="form-label" for="form3Example1m1">CEP</label>
+                                                        <label class="form-label" for="form3Example1m1">CEP*</label>
                                                         <input type="text" id="form3Example1m1"
                                                             class="form-control form-control-lg" name="cep" id="cep"
                                                             class="form-control" size="10" maxlength="9"
@@ -94,7 +94,7 @@
 
                                                 <div class="col-md-10 mb-4">
                                                     <div class="form-outline">
-                                                        <label class="form-label" for="form3Example1n1">Rua</label>
+                                                        <label class="form-label" for="form3Example1n1">Rua*</label>
                                                         <input type="text" id="rua"
                                                             class="form-control form-control-lg text-uppercase"
                                                             name="endereco"
@@ -106,7 +106,7 @@
                                                 </div>
 
                                                 <div class="col-md-2 mb-4">
-                                                    <label class="form-label" for="form3Example8">Número</label>
+                                                    <label class="form-label" for="form3Example8">Número*</label>
                                                     <input type="text" id="numero"
                                                         class="form-control form-control-lg text-uppercase"
                                                         name="numero"
@@ -121,7 +121,7 @@
                                             <div class="row">
 
                                                 <div class="col-md-5 mb-4">
-                                                    <label class="form-label" for="form3Example9">Bairro</label>
+                                                    <label class="form-label" for="form3Example9">Bairro*</label>
                                                     <input type="text" id="bairro"
                                                         class="form-control form-control-lg text-uppercase"
                                                         name="bairro"
@@ -131,7 +131,7 @@
                                                 </div>
 
                                                 <div class="col-md-5 mb-4">
-                                                    <label class="form-label" for="form3Example9">Cidade</label>
+                                                    <label class="form-label" for="form3Example9">Cidade*</label>
                                                     <input type="text" id="cidade"
                                                         class="form-control form-control-lg text-uppercase"
                                                         name="cidade"
@@ -141,7 +141,7 @@
                                                 </div>
 
                                                 <div class="col-md-2 mb-4">
-                                                    <label class="form-label" for="form3Example9">UF</label>
+                                                    <label class="form-label" for="form3Example9">UF*</label>
                                                     <input type="text" id="uf"
                                                         class="form-control form-control-lg text-uppercase"
                                                         name="estado"
@@ -155,7 +155,7 @@
                                             <div class="row">
 
                                                 <div class="col-md-8 mb-4">
-                                                    <label class="form-label" for="form3Example9">E-mail</label>
+                                                    <label class="form-label" for="form3Example9">E-mail*</label>
                                                     <input type="email" id="form3Example9"
                                                         class="form-control form-control-lg" name="email"
                                                         value="<?= isset($fornecedor) ? $fornecedor["email"] : ""; ?>"
@@ -164,7 +164,7 @@
                                                 </div>
 
                                                 <div class="col-md-4 mb-4">
-                                                    <label class="form-label" for="form3Example9">Senha</label>
+                                                    <label class="form-label" for="form3Example9">Senha*</label>
                                                     <input type="password" id="form3Example9"
                                                         class="form-control form-control-lg" name="senha"
                                                         value="<?= isset($fornecedor) ? $fornecedor["senha"] : ""; ?>"
@@ -176,9 +176,12 @@
 
 
                                             <div class="d-flex justify-content-end pt-3">
-                                                <button type="button" class="btn btn-light btn-md">Cancelar</button>
-                                                <button type="submit"
-                                                    class="btn btn-primary btn-md ms-2">Salvar</button>
+                                                <a href="<?= base_url() ?>fornecedores" class="btn btn-light btn-md">
+                                                    Cancelar
+                                                </a>
+                                                <button type="submit" class="btn btn-primary btn-md ms-2">
+                                                    Salvar
+                                                </button>
                                             </div>
 
                                         </div>

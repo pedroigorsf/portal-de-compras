@@ -1,11 +1,12 @@
 <section id="faq" class="faq section-bg">
-      <div class="container" data-aos="fade-up">
-      
+  <div class="container" data-aos="fade-up">
 
- <section id="counts" class="counts">
+
+    <section id="counts" class="counts">
       <div class="container">
 
         <div class="row">
+
 
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
@@ -41,7 +42,5 @@
         </div>
       </div>
     </section>
-    </div>
+  </div>
 </section>
-  
-

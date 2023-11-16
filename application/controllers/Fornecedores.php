@@ -3,9 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Fornecedores extends CI_Controller {
 
+	public function __construct(){
+		parent::__construct();
+		$this->load->model("Fornecedores_model");
+	}
+
 	public function index()
 	{
-        $this->load->model("Fornecedores_model");
         $data["fornecedores"] = $this->Fornecedores_model->listar_fornecedor();
 
 		$this->load->view('templates/header');
@@ -29,18 +33,49 @@ class Fornecedores extends CI_Controller {
 
 	public function cadastro()
 	{
-		$data = $_POST;
-		$data['stats'] = '1';
-		$this->load->model("Fornecedores_model");
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$stats = 1;
+			$fornecedor = $this->input->post('nome');
+			$cnpj = $this->input->post('cnpj');
+			$cep = $this->input->post('cep');
+			$endereco = $this->input->post('endereco');
+			$numero = $this->input->post('numero');
+			$bairro = $this->input->post('bairro');
+			$cidade = $this->input->post('cidade');
+			$estado = $this->input->post('estado');
+			$email = $this->input->post('email');
+			$senha = md5($this->input->post('senha'));
+			$data = array(
+				'stats' => $stats,
+				'nome' => $fornecedor,
+				'cnpj' => $cnpj,
+				'cep' => $cep,
+				'endereco' => $endereco,
+				'numero' => $numero,
+				'bairro' => $bairro,
+				'cidade' => $cidade,
+				'estado' => $estado,
+				'email' => $email,
+				'senha' => $senha
+			);
 
+			$result = $this->Fornecedores_model->verificar_fornecedor($data);
 
-		$result = $this->Fornecedores_model->verificar_fornecedor($data);
-		
-		if (count($result) <= 0) {
-			$this->Fornecedores_model->cadastro($data);
-			redirect("fornecedores");
-		} else {
-			redirect("fornecedores");
+			if (count($result) <= 0) 
+			{
+				$this->Fornecedores_model->cadastro($data);
+				$this->session->set_flashdata('success', 'Registrado com sucesso!');
+			} 
+			else 
+			{
+				$this->session->set_flashdata('duplicated', 'Dado duplicado!');
+			}
+		redirect("fornecedores/");
+		} 
+		else 
+		{
+			$this->session->set_flashdata('error', 'Ocorreu algum erro inesperado');
+			redirect("fornecedores/");
 		}
 
 		
@@ -48,7 +83,6 @@ class Fornecedores extends CI_Controller {
 	}
 
 	public function edit($id){
-		$this->load->model("Fornecedores_model");
 		$data["fornecedor"] = $this->Fornecedores_model->show($id);
 
 		$this->load->view('templates/header');
@@ -61,14 +95,12 @@ class Fornecedores extends CI_Controller {
 	}
 
 	public function update($id){
-		$this->load->model("Fornecedores_model");
 		$fornecedor = $_POST;
 		$this->Fornecedores_model->update($id, $fornecedor);
 		redirect("fornecedores");
 	}
 
 	public function delete($id){
-		$this->load->model("Fornecedores_model");
 		$this->Fornecedores_model->destroy($id);
 		redirect("fornecedores");
 
