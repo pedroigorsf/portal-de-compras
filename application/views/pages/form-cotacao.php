@@ -9,7 +9,7 @@
                 </legend>
             <?php else: ?>
                 <legend class="py-1 text-center text-uppercase text-bg-primary rounded">
-                Cadastrar uma nova cotação
+                    Cadastrar uma nova cotação
                 </legend>
             <?php endif; ?>
 
@@ -96,7 +96,20 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-4 mb-2">
+                                                <div class="col-md-3 mb-2">
+                                                    <div class="form-outline">
+                                                        <label class="form-label"
+                                                            for="form3Example1m1">Centro de Custo*</label>
+                                                        <input type="text" id="form3Example1m1"
+                                                            class="form-control form-control-lg text-uppercase"
+                                                            name="cc" id="cc"
+                                                            value=""
+                                                            required />
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3 mb-2">
                                                     <div class="form-outline">
                                                         <label class="form-label"
                                                             for="form3Example1m1">Aprovador*</label>

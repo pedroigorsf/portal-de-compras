@@ -1,7 +1,8 @@
   <header id="header" class="d-flex align-items-center shadow-sm p-3 mb-5 bg-white rounded">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="<?= base_url() ?>"><span><i class="bx bx-cart"></i> Portal de Compras</span></a></h1>
+    <!-- <i class="bx bx-cart"></i>  -->
+      <h3 class="logo"><a href="<?= base_url() ?>"><span>Portal de Compras</span></a></h3>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -25,6 +26,13 @@
             <ul>
               <li><a href="<?= base_url() ?>fornecedores/novo">Cadastrar novo fornecedor</a></li>
               <li><a href="<?= base_url() ?>fornecedores">Consultar fornecedor</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Pedro Igor</span></a>
+            <ul>
+              <li><a href="<?= base_url() ?>"><i class="bi bi-person-fill"></i> Configurações</a></li>
+              <li><a href="<?= base_url() ?>"><i class="bi bi-chat-dots-fill"></i> Mensagens</a></li>
+              <li><a href="<?= base_url() ?>login/logout"><i class="bi bi-box-arrow-in-left"></i> Logout</a></li>
             </ul>
           </li>
           

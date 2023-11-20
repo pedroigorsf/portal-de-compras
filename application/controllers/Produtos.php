@@ -6,6 +6,7 @@ class Produtos extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		permission();
 		$this->load->model("Produtos_model");
 	}
 
@@ -23,7 +24,6 @@ class Produtos extends CI_Controller
 
 	public function novo()
 	{
-		$this->load->model("Produtos_model");
 		$data["produtos"] = $this->Produtos_model->listar_produtos();
 
 		$this->load->view('templates/header');
@@ -50,7 +50,7 @@ class Produtos extends CI_Controller
 
 			if (count($result) <= 0) {
 				$this->Produtos_model->cadastro($data);
-				$this->session->set_flashdata('success', 'Registrado com sucesso!');
+				$this->session->set_flashdata('success', 'Registro atualizado!');
 			} else {
 				$this->session->set_flashdata('duplicated', 'Dado duplicado!');
 			}
@@ -62,22 +62,10 @@ class Produtos extends CI_Controller
 			$this->session->set_flashdata('error', 'Ocorreu algum erro inesperado');
 			redirect("produtos/");
 		}
-		// $data = $_POST;
-		// $data['stats'] = '1';
-		// $this->load->model("Produtos_model");
-		// $result = $this->Produtos_model->verificar_produto($data);
-
-		// if (count($result) <= 0) {
-		// 	$this->Produtos_model->cadastro($data);
-		// 	redirect("produtos/");
-		// } else {
-		// 	redirect("produtos/");
-		// }
 	}
 
 	public function edit($id)
 	{
-		$this->load->model("Produtos_model");
 		$data["produto"] = $this->Produtos_model->show($id);
 
 		$this->load->view('templates/header');
@@ -89,15 +77,36 @@ class Produtos extends CI_Controller
 
 	public function update($id)
 	{
-		$this->load->model("Produtos_model");
-		$produto = $_POST;
-		$this->Produtos_model->update($id, $produto);
-		redirect("produtos");
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$stats = $this->input->post('stats');
+			$produto = $this->input->post('nome');
+			$udm = $this->input->post('udm');
+			$data = array(
+				'stats' => $stats,
+				'nome' => $produto,
+				'udm' => $udm
+			);
+
+			$result = $this->Produtos_model->verificar_produto($data);
+
+			if (count($result) < 1) {
+				$this->Produtos_model->update($id, $data);
+				$this->session->set_flashdata('updated', 'Registrado com sucesso!');
+			} else {
+				$this->session->set_flashdata('duplicated', 'Dado duplicado!');
+			}
+
+			redirect("produtos/");
+
+		} else {
+
+			$this->session->set_flashdata('error', 'Ocorreu algum erro inesperado');
+			redirect("produtos/");
+		}
 	}
 
 	public function delete($id)
 	{
-		$this->load->model("Produtos_model");
 		$this->Produtos_model->destroy($id);
 		redirect("produtos");
 	}

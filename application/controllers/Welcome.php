@@ -5,8 +5,7 @@ class Welcome extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		
-
+		permission();
 	}
 
 	public function index()

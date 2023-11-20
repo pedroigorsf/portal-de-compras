@@ -3,9 +3,16 @@
 
   <?php if ($this->session->flashdata('success')): ?>
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
-          <strong><i class="bi bi-check-circle-fill"></i></strong> Cadastro realizado com sucesso!
+          <strong><i class="bi bi-check-circle-fill"></i></strong> Registro cadastrado com sucesso!
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata('updated')): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><i class="bi bi-wrench-adjustable-circle-fill"></i></strong> Registro atualizado com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
     <?php endif ?>
 
     <?php if ($this->session->flashdata('duplicated')): ?>

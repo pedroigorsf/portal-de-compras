@@ -1,13 +1,32 @@
 <section id="faq" class="faq section-bg">
   <div class="container" data-aos="fade-up">
 
-    
+  <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <strong><i class="bi bi-check-circle-fill"></i></strong> Registro cadastrado com sucesso!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata('updated')): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><i class="bi bi-wrench-adjustable-circle-fill"></i></strong> Registro atualizado com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata('error')): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong><i class="bi bi-exclamation-circle-fill"></i></strong> É necessário preencher todos os campos.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif ?>
 
     <table class="table border border-info">
       <thead class="thead-dark table-primary">
         <tr>
           <th scope="col" class="col-sm-2">Cotação</th>
-          <th scope="col" class="col-sm-9">Solicitação</th>
+          <th scope="col" class="col-sm-8">Solicitação</th>
           <th scope="col" class="col-sm-1">Status</th>
         </tr>
       </thead>
@@ -40,7 +59,15 @@
               </td> -->
 
               <td>
-                <button class="btn btn-info btn-sm">Informado</button>
+                <?php if($cotacao['status'] == 'Informado'):?>
+                <button class="btn btn-primary btn-sm w-100" disabled>Informado</button>
+                <?php endif; ?>
+                <?php if($cotacao['status'] == 'Aprovado'):?>
+                <button class="btn btn-success btn-sm w-100" disabled>Aprovado</button>
+                <?php endif; ?>
+                <?php if($cotacao['status'] == 'Reprovado'):?>
+                <button class="btn btn-danger btn-sm w-100" disabled>Reprovado</button>
+                <?php endif; ?>
               </td>
 
             </tr>

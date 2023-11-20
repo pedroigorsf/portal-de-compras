@@ -3,15 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Cotacoes extends CI_Controller
 {
-	public function __construct(){
+	public function __construct()
+	{
 		parent::__construct();
+		permission();
 		$this->load->model("Cotacoes_model");
 	}
 
 	public function index()
 	{
 
-		
+
 		$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
 		$data["solicitantes"] = $this->Cotacoes_model->solicitantes();
 
@@ -36,42 +38,25 @@ class Cotacoes extends CI_Controller
 
 	public function cadastro()
 	{
-		$novo = $_POST;
-		$novo['fk_usuario'] = '5';
-		$this->Cotacoes_model->cadastro($novo);
-		redirect("cotacoes");
-
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$stats = 1;
-			$fornecedor = $this->input->post('nome');
-			$cnpj = $this->input->post('cnpj');
-			$cep = $this->input->post('cep');
-			$endereco = $this->input->post('endereco');
+			$usuario = '5';
+			$solicitacao = $this->input->post('solicitacao');
+			$data_inicial = $this->input->post('data_inicial');
+			$data_final = $this->input->post('data_final');
 			$data = array(
-				'stats' => $stats,
-				'nome' => $fornecedor,
-				'cnpj' => $cnpj,
-				'cep' => $cep,
-				'endereco' => $endereco,
+				'fk_usuario' => $usuario,
+				'solicitacao' => $solicitacao,
+				'data_inicial' => $data_inicial,
+				'data_final' => $data_final,
 			);
 
-			$result = $this->Fornecedores_model->verificar_fornecedor($data);
-
-			if (count($result) <= 0) 
-			{
-				$this->Fornecedores_model->cadastro($data);
-				$this->session->set_flashdata('success', 'Registrado com sucesso!');
-			} 
-			else 
-			{
-				$this->session->set_flashdata('duplicated', 'Dado duplicado!');
-			}
-		redirect("fornecedores/");
-		} 
-		else 
-		{
+			$this->Cotacoes_model->cadastro($data);
+			$this->session->set_flashdata('success', 'Registrado com sucesso!');
+			redirect("cotacoes");
+			
+		} else {
 			$this->session->set_flashdata('error', 'Ocorreu algum erro inesperado');
-			redirect("fornecedores/");
+			redirect("cotacoes");
 		}
 	}
 
@@ -179,7 +164,7 @@ class Cotacoes extends CI_Controller
 		$data['fk_produtos'] = $_POST["fk-produtos"];
 		$data['quantidade'] = $_POST["quantidade"];
 		$data['id'] = $id;
-		
+
 
 		$result = $this->Cotacoes_model->verificar_produtos_cotacao($data);
 		// print_r(count($result));
@@ -191,7 +176,7 @@ class Cotacoes extends CI_Controller
 			$this->Cotacoes_model->atulizar_cotacao_produto($data);
 			redirect("cotacoes/adicionar_produtos/$id");
 		}
-		
+
 	}
 
 	public function deletar_fornecedor_cotacao($id_cotacao, $id_fornecedor)

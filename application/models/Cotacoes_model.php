@@ -100,25 +100,30 @@ class Cotacoes_model extends CI_Model
         return array_merge($produtos_por_cotacao, $fornecedores_por_cotacao);
     }
 
-    public function verificar_produtos_cotacao($data){
-        
+    public function verificar_produtos_cotacao($data)
+    {
+
         $this->db->where("fk_produtos", $data['fk_produtos']);
         $this->db->where("fk_cotacao", $data['id']);
         return $this->db->get("produtos_cotacao")->result_array();
-        
+
     }
 
-    public function atulizar_cotacao_produto($data){
+    public function atulizar_cotacao_produto($data)
+    {
     }
 
-    public function verificar_fornecedor_cotacao($data){
-        
+    public function verificar_fornecedor_cotacao($data)
+    {
+
         $this->db->where("fk_fornecedor", $data['fk_fornecedor']);
         $this->db->where("fk_cotacao_fornecedor", $data['id']);
         return $this->db->get("fornecedores_cotacao")->result_array();
-        
+
     }
 
-    public function atulizar_cotacao_fornecedor($data){
+    public function atulizar_cotacao_fornecedor($data)
+    {
     }
+
 }

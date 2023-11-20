@@ -1,4 +1,3 @@
-
 <section id="faq" class="faq section-bg">
   <div class="container" data-aos="fade-up" id="conteudo">
     <div class="container">
@@ -46,7 +45,8 @@
                         <?php foreach ($fornecedores_cotacao as $f_cotacao): ?>
                           <tr>
                             <td>
-                            <i class="bi bi-circle-fill text-info"></i> <?= $f_cotacao["nome"] ?>
+                              <i class="bi bi-circle-fill text-info"></i>
+                              <?= $f_cotacao["nome"] ?>
                             </td>
                           </tr>
                         <?php endforeach; ?>
@@ -61,21 +61,6 @@
                 </div>
               </div>
             </form>
-
-
-            <script>
-              function goDelete(id) {
-                var myUrl = '<?= base_url(); ?>cotacoes/deletar_fornecedor_cotacao/'
-                  + <?= $cotacoes["id"] ?> + '/'
-                  + id
-                if (confirm("Deseja apagar esse registro?")) {
-                  window.location.href = myUrl;
-                } else {
-                  return false;
-                }
-              }
-
-            </script>
         </div>
 
 
@@ -108,7 +93,8 @@
                         <?php foreach ($produtos_cotacao as $p_cotacao): ?>
                           <tr>
                             <td>
-                            <i class="bi bi-circle-fill text-info"></i> <?= $p_cotacao["nome"] ?>
+                              <i class="bi bi-circle-fill text-info"></i>
+                              <?= $p_cotacao["nome"] ?>
                             </td>
                           </tr>
                         <?php endforeach; ?>
@@ -132,6 +118,21 @@
 
       <div class="col">
         <h4>Cotação:</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <?php if ($produtos_cotacao): ?>
           <?php foreach ($produtos_cotacao as $p): ?>
@@ -164,7 +165,9 @@
                         <?= $f['nome']; ?>
                       </td>
                       <td><i class="bi bi-circle-fill text-success"></i></td>
-                      <td><?= $p['quantidade']; ?></td>
+                      <td>
+                        <?= $p['quantidade']; ?>
+                      </td>
                       <td>R$ 0,00</td>
                       <td>R$ 0,00</td>
                     </tr>
@@ -201,8 +204,32 @@
 
         <div class="row">
           <div class="col">
-            <button class="btn btn-success btn-sm" id="gerarPDF">
+            <!-- Button trigger modal -->
+            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               <i class="bi bi-cart-check"></i> Enviar para aprovação</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
             <a href="<?= base_url() ?>cotacoes/" class="btn btn-secondary btn-sm">
               <i class="bi bi-arrow-left"></i> Voltar</a>
           </div>

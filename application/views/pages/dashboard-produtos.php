@@ -4,14 +4,21 @@
 
     <?php if ($this->session->flashdata('success')): ?>
       <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong><i class="bi bi-check-circle-fill"></i></strong> Cadastro realizado com sucesso!
+        <strong><i class="bi bi-check-circle-fill"></i></strong> Registro cadastrado com sucesso!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata('updated')): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><i class="bi bi-wrench-adjustable-circle-fill"></i></strong> Registro atualizado com sucesso!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php endif ?>
 
     <?php if ($this->session->flashdata('duplicated')): ?>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong><i class="bi bi-info-circle-fill"></i></strong> O produto informado já consta na base de dados do sistema.
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong><i class="bi bi-info-circle-fill"></i></strong> ERRO: O produto informado já existe.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php endif ?>
@@ -65,9 +72,9 @@
               </td>
 
               <td class="text-center">
-                  <a class="btn btn-primary btn-sm" href="<?= base_url() ?>produtos/edit/<?= $produto['id'] ?>">
-                    <i class="bi bi-pencil"></i>
-                  </a>
+                <a class="btn btn-primary btn-sm" href="<?= base_url() ?>produtos/edit/<?= $produto['id'] ?>">
+                  <i class="bi bi-pencil"></i>
+                </a>
               </td>
             </tr>
 

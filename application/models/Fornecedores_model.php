@@ -25,10 +25,10 @@ class Fornecedores_model extends CI_Model
         WHERE fornecedor.id = $id");
     }
 
-    public function update($id, $fornecedor)
+    public function update($id, $data)
     {
         $this->db->where("id", $id);
-        return $this->db->update("tb_fornecedores", $fornecedor);
+        return $this->db->update("tb_fornecedores", $data);
     }
 
     public function destroy($id)
@@ -48,10 +48,8 @@ class Fornecedores_model extends CI_Model
     }
 
     public function verificar_fornecedor($data){
-        
         $this->db->where("cnpj", $data['cnpj']);
         return $this->db->get("tb_fornecedores")->result_array();
-        
     }
 
 }

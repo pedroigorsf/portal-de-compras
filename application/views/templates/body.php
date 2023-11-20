@@ -1,9 +1,17 @@
 <section id="faq" class="faq section-bg">
   <div class="container" data-aos="fade-up">
 
+    <?php if ($this->session->flashdata('success')): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><i class="bi bi-exclamation-circle-fill"></i></strong> Bem vindo(a)
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif ?>
 
     <section id="counts" class="counts">
       <div class="container">
+
+
 
         <div class="row">
 

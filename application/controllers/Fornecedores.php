@@ -5,6 +5,7 @@ class Fornecedores extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		permission();
 		$this->load->model("Fornecedores_model");
 	}
 
@@ -95,9 +96,37 @@ class Fornecedores extends CI_Controller {
 	}
 
 	public function update($id){
-		$fornecedor = $_POST;
-		$this->Fornecedores_model->update($id, $fornecedor);
-		redirect("fornecedores");
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$stats = $this->input->post('stats');
+			$fornecedor = $this->input->post('nome');
+			$cnpj = $this->input->post('cnpj');
+			$cep = $this->input->post('cep');
+
+			$data = array(
+				'stats' => $stats,
+				'nome' => $fornecedor,
+				'cnpj' => $cnpj,
+				'cep' => $cep
+			);
+
+			$result = $this->Fornecedores_model->verificar_fornecedor($data);
+
+			if (count($result) < 1) 
+			{
+				$this->Fornecedores_model->update($id, $data);
+				$this->session->set_flashdata('updated', 'Registrado com sucesso!');
+			} 
+			else 
+			{
+				$this->session->set_flashdata('duplicated', 'Dado duplicado!');
+			}
+		redirect("fornecedores/");
+		} 
+		else 
+		{
+			$this->session->set_flashdata('error', 'Ocorreu algum erro inesperado');
+			redirect("fornecedores/");
+		}
 	}
 
 	public function delete($id){
