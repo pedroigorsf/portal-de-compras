@@ -71,7 +71,7 @@
                                                         </label>
                                                         <input type="text" id="form3Example1m" name="nome"
                                                             class="form-control form-control-lg text-uppercase"
-                                                            value="<?= isset($solicitantes) ? $solicitantes["nome"] : ""; ?>"
+                                                            value="<?= isset($solicitante) ? $solicitante["nome"] : ""; ?>"
                                                             disabled required
                                                             oninput="this.value = this.value.toUpperCase()" />
 

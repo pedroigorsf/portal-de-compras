@@ -5,7 +5,8 @@ class Fornecedores extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		permission();
+		$data['solicitante'] = permission();
+		$this->load->view('templates/navbar', $data);
 		$this->load->model("Fornecedores_model");
 	}
 
@@ -14,7 +15,6 @@ class Fornecedores extends CI_Controller {
         $data["fornecedores"] = $this->Fornecedores_model->listar_fornecedor();
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/dashboard-fornecedores', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -24,7 +24,6 @@ class Fornecedores extends CI_Controller {
 	{
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-fornecedores');
 		$this->load->view('templates/js');
 		$this->load->view('templates/cnpj');
@@ -87,7 +86,6 @@ class Fornecedores extends CI_Controller {
 		$data["fornecedor"] = $this->Fornecedores_model->show($id);
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-fornecedores', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/cnpj');

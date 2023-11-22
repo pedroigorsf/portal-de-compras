@@ -6,19 +6,17 @@ class Cotacoes extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		permission();
+		$data['solicitante'] = permission();
+		$this->load->view('templates/navbar', $data);
 		$this->load->model("Cotacoes_model");
 	}
 
 	public function index()
 	{
-
-
 		$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
 		$data["solicitantes"] = $this->Cotacoes_model->solicitantes();
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/dashboard-cotacoes', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -26,11 +24,10 @@ class Cotacoes extends CI_Controller
 
 	public function novo()
 	{
-		$data["solicitantes"] = $this->Cotacoes_model->solicitantes();
+		$data["solicitante"] = permission();
 		$data["aprovadores"] = $this->Cotacoes_model->aprovadores();
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-cotacao', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -39,7 +36,7 @@ class Cotacoes extends CI_Controller
 	public function cadastro()
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$usuario = '5';
+			$usuario = permission()['id'];
 			$solicitacao = $this->input->post('solicitacao');
 			$data_inicial = $this->input->post('data_inicial');
 			$data_final = $this->input->post('data_final');
@@ -65,7 +62,6 @@ class Cotacoes extends CI_Controller
 		$data["cotacao"] = $this->Cotacoes_model->show($id);
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-cotacao', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -93,7 +89,6 @@ class Cotacoes extends CI_Controller
 		$data["produtos_cotacao"] = $this->Produtos_model->listar_produtos_cotacao($id);
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/painel-cotacao', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -108,7 +103,6 @@ class Cotacoes extends CI_Controller
 		$data["produtos_cotacao"] = $this->Produtos_model->listar_produtos_cotacao($id);
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/adicionar-produtos', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -125,7 +119,6 @@ class Cotacoes extends CI_Controller
 
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/adicionar-fornecedores', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');

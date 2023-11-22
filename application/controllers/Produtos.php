@@ -6,7 +6,8 @@ class Produtos extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		permission();
+		$data['solicitante'] = permission();
+		$this->load->view('templates/navbar', $data);
 		$this->load->model("Produtos_model");
 	}
 
@@ -15,7 +16,6 @@ class Produtos extends CI_Controller
 		$data["produtos"] = $this->Produtos_model->listar_produtos();
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/dashboard-produtos', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -27,7 +27,6 @@ class Produtos extends CI_Controller
 		$data["produtos"] = $this->Produtos_model->listar_produtos();
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-produtos', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
@@ -69,7 +68,6 @@ class Produtos extends CI_Controller
 		$data["produto"] = $this->Produtos_model->show($id);
 
 		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
 		$this->load->view('pages/form-produtos', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
