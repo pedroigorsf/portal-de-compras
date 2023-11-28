@@ -1,9 +1,18 @@
 <section id="faq" class="faq section-bg">
   <div class="container" data-aos="fade-up">
 
-    <?php if ($this->session->flashdata('success')): ?>
+    <?php if ($this->session->flashdata('success_user')): ?>
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong><i class="bi bi-exclamation-circle-fill"></i></strong> Bem vindo(a)
+        <?php echo $usuario['nome']; ?>!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <?php endif ?>
+
+    <?php if ($this->session->flashdata('success_supplier')): ?>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong><i class="bi bi-exclamation-circle-fill"></i></strong> Bem vindo(a)
+        <?php echo $usuario['nome']; ?>!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <?php endif ?>

@@ -6,15 +6,8 @@ class Welcome extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$data['solicitante'] = permission();
-		$this->load->view('templates/navuser', $data);
+		$data['usuario'] = permission();
 		$this->load->view('templates/navbar', $data);
-
-		
-		// print("<pre>");
-		// print_r($perm['tipo']);
-		// // print_r({tipo});
-
 	}
 
 	public function index()

@@ -30,9 +30,8 @@
               <li><a href="<?= base_url() ?>fornecedores">Consultar fornecedor</a></li>
             </ul>
           </li>
-        <?php endif; ?>
+        <?php elseif (permission()['tipo'] == "aprovador"): ?>
 
-        <?php if (permission()['tipo'] == "aprovador"): ?>
           <li class="dropdown"><a href="#"><span>Requisições</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="<?= base_url() ?>cotacoes">Gerenciar requisição</a></li>
@@ -42,10 +41,28 @@
         <?php endif; ?>
 
 
+
+        <!-- PAINEL FORNECEDORES E APROVADORES -->
+        <?php if (permission()['tipo'] == "Fornecedor"): ?>
+
+          <li class="nav-link"><a href="#"><span>Cotações em aberto</span></i></a></li>
+          <li class="nav-link"><a href="#"><span>Histórico de respostas</span></i></a></li>
+
+
+        <?php elseif (permission()['tipo'] == "aprovador"): ?>
+          <li class="nav-link"><a href="#"><span>Requisições em aberto</span></i></a></li>
+          <li class="nav-link"><a href="#"><span>Histórico de aprovações</span></i></a></li>
+        <?php endif; ?>
+        <!-- FIM DO PAINEL FORNECEDORES E APROVADORES -->
+
+
+
+
+
         <li class="dropdown">
           <a href="#"><span>
               <i class="bi bi-person-circle"></i>
-              <?php echo $solicitante['nome']; ?>
+              <?php echo $usuario['nome']; ?>
             </span></a>
           <ul>
             <li><a href="<?= base_url() ?>"><i class="bi bi-person-fill"></i> Configurações</a></li>

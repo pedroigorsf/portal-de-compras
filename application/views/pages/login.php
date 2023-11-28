@@ -1,14 +1,8 @@
 <div class="bg-image" style="background-image: linear-gradient(to bottom, #FFF, #A0D5FF); height: 100vh">
     <div class="container" data-aos="fade-up">
 
-
-
         <fieldset class="scheduler-border">
 
-
-
-
-            <!-- Section: Design Block -->
             <section class=" text-center text-lg-start">
                 <style>
                     .rounded-t-5 {
@@ -35,23 +29,7 @@
                         <div class="col-lg-8">
                             <div class="card-body py-5 px-md-4">
 
-                                <?php if ($this->session->flashdata('error')): ?>
-                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                        <strong><i class="bi bi-exclamation-circle-fill"></i></strong> Dados inválidos.
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                <?php endif ?>
-
-                                <?php if ($this->session->flashdata('without-access')): ?>
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong><i class="bi bi-exclamation-circle-fill"></i></strong> É necessário está
-                                        logado
-                                        para acessar o sistema!
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                            aria-label="Close"></button>
-                                    </div>
-                                <?php endif ?>
+                                
 
                                 <div class="text-center">
                                     <h4 class="mt-1 mb-5 pb-1 text-primary">Portal de Compras</h4>
@@ -61,17 +39,17 @@
                                     <div class="mb-4 text-center">
 
                                         <div class="form-check form-check-inline">
-                                            <input class="btn-check" type="radio" name="flexRadioDefault"
-                                                id="flexRadioDefault1" value="1" required>
+                                            <input class="btn-check" type="radio" name="tipo" id="flexRadioDefault1"
+                                                value="1" required>
                                             <label class="btn btn-outline-primary" for="flexRadioDefault1">
                                                 <i class="bi bi-person-badge"></i>
                                                 Funcionário
                                             </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="btn-check" type="radio" name="flexRadioDefault"
+                                            <input class="btn-check" type="radio" value="2" name="tipo"
                                                 id="flexRadioDefault2" required>
-                                            <label class="btn btn-outline-primary" value="2" for="flexRadioDefault2">
+                                            <label class="btn btn-outline-primary" for="flexRadioDefault2">
                                                 <i class="bi bi-buildings"></i>
                                                 Fornecedor
                                             </label>
@@ -84,7 +62,7 @@
                                         <div class="input-group">
                                             <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
                                             <input type="text" id="form2Example1" name="usuario" class="form-control"
-                                                placeholder="Usuário" />
+                                                placeholder="Usuário" required />
                                         </div>
                                     </div>
 
@@ -93,7 +71,7 @@
                                         <div class="input-group">
                                             <div class="input-group-text"><i class="bi bi-key-fill"></i></div>
                                             <input type="password" id="form2Example2" name="senha" class="form-control"
-                                                placeholder="Senha" />
+                                                placeholder="Senha" required />
                                         </div>
                                     </div>
 

@@ -14,6 +14,18 @@ class Cotacoes_model extends CI_Model
         return $this->db->get("tb_cotacoes")->result_array();
     }
 
+    public function listar_cotacao_forn($data)
+    {
+        $usuario = $data['usuario']['id'];
+        // print_r($usuario);
+        // exit;
+        return $this->db->query("SELECT c.*, f.*
+        FROM tb_cotacoes AS c INNER JOIN fornecedores_cotacao AS f
+        ON f.fk_cotacao_fornecedor = c.id
+        WHERE f.fk_fornecedor = $usuario")->result_array();
+        // return $this->db->get("tb_cotacoes")->result_array();
+    }
+
     public function aprovadores()
     {
         return $this->db->query("SELECT nome FROM tb_usuarios WHERE tipo = 'aprovador' ")->row_array();

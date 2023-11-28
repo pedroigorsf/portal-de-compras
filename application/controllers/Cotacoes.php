@@ -6,14 +6,24 @@ class Cotacoes extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$data['solicitante'] = permission();
+		$data['usuario'] = permission();
 		$this->load->view('templates/navbar', $data);
 		$this->load->model("Cotacoes_model");
 	}
 
 	public function index()
 	{
-		$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
+		$data['usuario'] = permission();
+
+		if ($data['usuario']['tipo'] == "solicitante") {
+			$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
+		} else if ($data['usuario']['tipo'] == "Fornecedor") {
+			$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao_forn($data);
+		} else if ($data['usuario']['tipo'] == "aprovador") {
+			$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
+		}
+
+
 		$data["solicitantes"] = $this->Cotacoes_model->solicitantes();
 
 		$this->load->view('templates/header');
@@ -50,7 +60,7 @@ class Cotacoes extends CI_Controller
 			$this->Cotacoes_model->cadastro($data);
 			$this->session->set_flashdata('success', 'Registrado com sucesso!');
 			redirect("cotacoes");
-			
+
 		} else {
 			$this->session->set_flashdata('error', 'Ocorreu algum erro inesperado');
 			redirect("cotacoes");
