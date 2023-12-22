@@ -16,7 +16,7 @@ class Cotacoes extends CI_Controller
 		$data['usuario'] = permission();
 
 		if ($data['usuario']['tipo'] == "solicitante") {
-			$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao();
+			$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao_solic($data);
 		} else if ($data['usuario']['tipo'] == "Fornecedor") {
 			$data["cotacoes"] = $this->Cotacoes_model->listar_cotacao_forn($data);
 		} else if ($data['usuario']['tipo'] == "aprovador") {
@@ -39,6 +39,20 @@ class Cotacoes extends CI_Controller
 
 		$this->load->view('templates/header');
 		$this->load->view('pages/form-cotacao', $data);
+		$this->load->view('templates/js');
+		$this->load->view('templates/footer');
+	}
+
+	public function resposta_cotacao($id)
+	{
+		//$data["solicitante"] = permission();
+		//$data["aprovadores"] = $this->Cotacoes_model->aprovadores();
+		//$data["cotacoes"] = $this->Cotacoes_model->painel($data);
+		$this->load->model("Produtos_model");
+		$data["produtos_cotacao"] = $this->Produtos_model->listar_produtos_cotacao($id);
+
+		$this->load->view('templates/header');
+		$this->load->view('pages/form-produtos-cotacao', $data);
 		$this->load->view('templates/js');
 		$this->load->view('templates/footer');
 	}
@@ -197,6 +211,3 @@ class Cotacoes extends CI_Controller
 
 
 }
-
-
-

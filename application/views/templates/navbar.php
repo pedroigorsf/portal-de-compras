@@ -32,26 +32,15 @@
           </li>
         <?php elseif (permission()['tipo'] == "aprovador"): ?>
 
-          <li class="dropdown"><a href="#"><span>Requisições</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="<?= base_url() ?>cotacoes">Gerenciar requisição</a></li>
-              <li><a href="<?= base_url() ?>cotacoes">Histórico de requisições</a></li>
-            </ul>
-          </li>
-        <?php endif; ?>
 
+              <li><a href="<?= base_url() ?>cotacoes">Aprovações pendentes</a></li>
+              <li><a href="<?= base_url() ?>cotacoes">Histórico de aprovações</a></li>
 
+        <?php elseif (permission()['tipo'] == "Fornecedor"): ?>
 
-        <!-- PAINEL FORNECEDORES E APROVADORES -->
-        <?php if (permission()['tipo'] == "Fornecedor"): ?>
+          <li class="nav-link"><a href="<?= base_url() ?>cotacoes"><span>Cotações em aberto</span></i></a></li>
+          <li class="nav-link"><a href="<?= base_url() ?>cotacoes"><span>Histórico de respostas</span></i></a></li>
 
-          <li class="nav-link"><a href="#"><span>Cotações em aberto</span></i></a></li>
-          <li class="nav-link"><a href="#"><span>Histórico de respostas</span></i></a></li>
-
-
-        <?php elseif (permission()['tipo'] == "aprovador"): ?>
-          <li class="nav-link"><a href="#"><span>Requisições em aberto</span></i></a></li>
-          <li class="nav-link"><a href="#"><span>Histórico de aprovações</span></i></a></li>
         <?php endif; ?>
         <!-- FIM DO PAINEL FORNECEDORES E APROVADORES -->
 
@@ -93,6 +82,7 @@
     </nav>
 
   </div>
+  
 </header>
+<br>
 
-<br><br><br>

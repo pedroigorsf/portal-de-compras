@@ -17,7 +17,7 @@
 
 
 
-                    <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="row d-flex justify-content-center align-items-center">
                         <div class="col">
                             <div class="card card-registration my-5">
                                 <div class="row g-0">

@@ -1,13 +1,6 @@
 <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
 
-        <?php
-        // if (!empty($_SESSION['mensageria'])){
-        //     echo $_SESSION['mensageria'];
-        //     exit;
-        // }
-        ?>
-
         <fieldset class="scheduler-border">
             <?php if (isset($produto)): ?>
                 <legend class="py-1 text-center text-uppercase text-bg-primary rounded">
@@ -25,11 +18,7 @@
                     <form action="<?= base_url() ?>produtos/cadastro" method="post">
                     <?php endif; ?>
 
-
-
-
-
-                    <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="row d-flex justify-content-center align-items-center">
                         <div class="col">
                             <div class="card card-registration my-5">
                                 <div class="row g-0">

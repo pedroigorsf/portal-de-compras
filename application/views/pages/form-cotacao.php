@@ -13,22 +13,13 @@
                 </legend>
             <?php endif; ?>
 
-
-
             <?php if (isset($cotacao)): ?>
                 <form action="<?= base_url() ?>cotacoes/update/<?= $cotacao['id'] ?>" method="post">
                 <?php else: ?>
                     <form action="<?= base_url() ?>cotacoes/cadastro" method="post">
                     <?php endif; ?>
 
-
-
-
-
-
-
-
-                    <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="row d-flex justify-content-center align-items-center">
                         <div class="col">
                             <div class="card card-registration my-5">
                                 <div class="row g-0">

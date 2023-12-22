@@ -26,7 +26,7 @@
                     <form action="<?= base_url() ?>cotacoes/cadastro_cotacao_produto/<?= $cotacoes['id'] ?>" method="post">
                     <?php endif; ?>
 
-                    <div class="row  justify-content-center">
+                    <div class="row justify-content-center">
                         <div class="col-sm-8">
 
 
